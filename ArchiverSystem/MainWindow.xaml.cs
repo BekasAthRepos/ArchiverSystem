@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArchiverSystem.Model;
+using ArchiverSystem.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,18 @@ namespace ArchiverSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DAL dal;
+
         public MainWindow()
         {
             InitializeComponent();
+            dal = new DAL();
+        }
+
+        public async void insertalbum(object sender, RoutedEventArgs e)
+        {
+            Album album = new Album { Name = "alb1", Description = "Desr1" };
+            await dal.InsertAlbumAsync(album);
         }
     }
 }
