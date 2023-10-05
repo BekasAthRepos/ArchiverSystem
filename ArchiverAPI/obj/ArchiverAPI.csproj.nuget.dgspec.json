@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Software\\Development\\_Private Repos\\ArchiverSystem\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj": {}
+    "F:\\Software\\Development\\_Private Repos\\Archiver\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj": {}
   },
   "projects": {
-    "F:\\Software\\Development\\_Private Repos\\ArchiverSystem\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj": {
+    "F:\\Software\\Development\\_Private Repos\\Archiver\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Software\\Development\\_Private Repos\\ArchiverSystem\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj",
+        "projectUniqueName": "F:\\Software\\Development\\_Private Repos\\Archiver\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj",
         "projectName": "ArchiverAPI",
-        "projectPath": "F:\\Software\\Development\\_Private Repos\\ArchiverSystem\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj",
+        "projectPath": "F:\\Software\\Development\\_Private Repos\\Archiver\\ArchiverSystem\\ArchiverAPI\\ArchiverAPI.csproj",
         "packagesPath": "C:\\Users\\UserX\\.nuget\\packages\\",
-        "outputPath": "F:\\Software\\Development\\_Private Repos\\ArchiverSystem\\ArchiverSystem\\ArchiverAPI\\obj\\",
+        "outputPath": "F:\\Software\\Development\\_Private Repos\\Archiver\\ArchiverSystem\\ArchiverAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
