@@ -15,4 +15,4 @@ CREATE TABLE [dbo].[Item]
     [Qty] FLOAT NULL, 
     [InputDate] DATETIME NULL, 
     [UpdateDate] DATETIME NULL 
-)
+);
