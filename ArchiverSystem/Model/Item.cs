@@ -14,7 +14,7 @@ namespace ArchiverSystem.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public double Qty { get; set; }
-        public Image image {get; set;}
+        public Image Image {get; set;}
         public DateTime InputDate { get; set; }
         public DateTime UpdateDate { get; set;}
 

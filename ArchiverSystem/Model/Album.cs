@@ -11,6 +11,7 @@ namespace ArchiverSystem.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<Item> Items { get; set; }
         public DateTime InputDate { get; set; }
         public DateTime UpdateDate { get; set; }
 

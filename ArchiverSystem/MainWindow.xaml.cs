@@ -31,9 +31,9 @@ namespace ArchiverSystem
         }
 
         public async void insertalbum(object sender, RoutedEventArgs e)
-        {
-            Album album = new Album { Name = "alb1", Description = "Desr1" };
-            await dal.InsertAlbumAsync(album);
+        { 
+            if(await dal.DeleteAlbumByIdAsync(15))
+                lbl1.Content = "deleted";
         }
     }
 }

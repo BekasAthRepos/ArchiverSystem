@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:ArchiverSystem"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Click="insertalbum">Insert album</Button>
 
-    </Grid>
+    <StackPanel>
+        <Button Click="insertalbum">button</Button>
+        <Label Name="lbl1"></Label>
+    </StackPanel>
+   
 </Window>
