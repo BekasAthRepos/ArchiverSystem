@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\Software\Development\_Private Repos\Archiver\ArchiverSystem\ArchiverSystem\App.xaml
-1219584333
-2-725638908
-8-1062978305
+2-1338908558
+3-696826447
+9-832159686
 15-895331471
-MainWindow.xaml;
+View\AddAlbumView.xaml;View\StartPage.xaml;
 
 False
 

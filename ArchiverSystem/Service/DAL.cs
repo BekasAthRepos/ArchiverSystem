@@ -91,11 +91,11 @@ namespace ArchiverSystem.Service
         {
             try
             {
-                string sql = "delete from Item where" 
-                sql = "delete from Album where Id = @id";
-                int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
-                if
-                return affectedRows > 0;
+                //string sql = "delete from Item where "; 
+               // sql = "delete from Album where Id = @id";
+                //int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
+                //if
+                //return affectedRows > 0;
             }catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);

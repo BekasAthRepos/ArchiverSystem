@@ -1,6 +1,4 @@
-﻿using ArchiverSystem.Model;
-using ArchiverSystem.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ArchiverSystem
+namespace ArchiverSystem.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddAlbumView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddAlbumView : Page
     {
-        private DAL dal;
-
-        public MainWindow()
+        public AddAlbumView()
         {
             InitializeComponent();
-            dal = new DAL();
-        }
-
-        public async void insertalbum(object sender, RoutedEventArgs e)
-        { 
-            if(await dal.DeleteAlbumByIdAsync(15))
-                lbl1.Content = "deleted";
         }
     }
 }
