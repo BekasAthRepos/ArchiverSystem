@@ -75,20 +75,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Service\DAL.cs" />
+    <Compile Include="View\AddAlbumView.xaml.cs">
+      <DependentUpon>AddAlbumView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AddAlbumView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\AddAlbumView.xaml.cs">
-      <DependentUpon>AddAlbumView.xaml</DependentUpon>
-    </Compile>
     <Page Include="View\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

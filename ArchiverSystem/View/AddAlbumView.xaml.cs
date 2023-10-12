@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ArchiverSystem.View
@@ -18,11 +17,13 @@ namespace ArchiverSystem.View
     /// <summary>
     /// Interaction logic for AddAlbumView.xaml
     /// </summary>
-    public partial class AddAlbumView : Page
+    public partial class AddAlbumView : Window
     {
         public AddAlbumView()
         {
             InitializeComponent();
+            this.Height = SystemParameters.PrimaryScreenHeight * 0.5;
+            this.Width = SystemParameters.PrimaryScreenWidth * 0.25;
         }
     }
 }

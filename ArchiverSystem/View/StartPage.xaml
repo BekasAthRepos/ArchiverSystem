@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
-                        <Button Style="{StaticResource addButton}">Add Album</Button>
+                        <Button Style="{StaticResource addButton}" Click="onAddAlbumClicked">Add Album</Button>
                     </Border>
                 </Grid>
             </Border>

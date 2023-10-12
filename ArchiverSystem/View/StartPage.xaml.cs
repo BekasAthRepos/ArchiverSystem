@@ -25,5 +25,11 @@ namespace ArchiverSystem.View
             this.Height = SystemParameters.PrimaryScreenHeight * 0.7;
             this.Width = SystemParameters.PrimaryScreenWidth * 0.7;
         }
+
+        public void onAddAlbumClicked(object sender, EventArgs e)
+        {
+            AddAlbumView addAlbumView = new AddAlbumView();
+            addAlbumView.ShowDialog();
+        }
     }
 }

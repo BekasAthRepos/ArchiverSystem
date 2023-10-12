@@ -42,7 +42,6 @@
             <!-- addButtonBorder -->
             <Style x:Key="addButtonBorder" TargetType="Border">
                 <Setter Property="CornerRadius" Value="6"/>
-                <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="Background" Value="Blue"/>
                 <Setter Property="Padding" Value="3"/>
                 <Setter Property="Margin" Value="5"/>
