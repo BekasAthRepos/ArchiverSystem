@@ -33,18 +33,86 @@
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Background" Value="Blue"/>
                 <Setter Property="BorderBrush" Value="Blue"/>
-                
+                <Setter Property="Margin" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Background" Value="Blue"/>
+                    </Trigger>
+                </Style.Triggers>
             </Style>
 
             <!-- addButtonBorder -->
             <Style x:Key="addButtonBorder" TargetType="Border">
                 <Setter Property="CornerRadius" Value="6"/>
                 <Setter Property="Background" Value="Blue"/>
-                <Setter Property="Padding" Value="3"/>
-                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+            <!-- addEditPageTitleLabel -->
+            <Style x:Key="addEditPageTitleLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="Blue"/>
+            </Style>
+
+            <!-- dataTextBox -->
+            <Style x:Key="dataTextBox" TargetType="TextBox">
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <!-- dataDescription -->
+            <Style x:Key="dataDescription" TargetType="TextBox">
+                <Setter Property="Height" Value="100"/>
+                <Setter Property="Width" Value="300"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <!-- dataLabel -->
+            <Style x:Key="dataLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+
+            <!-- saveButton -->
+            <Style x:Key="saveButton" TargetType="Button">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="Green"/>
+                <Setter Property="BorderBrush" Value="Green"/>
+                <Setter Property="Margin" Value="2"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- saveButtonBorder -->
+            <Style x:Key="saveButtonBorder" TargetType="Border">
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Background" Value="Green"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
         </ResourceDictionary>
