@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ArchiverSystem.View"
+        xmlns:lang="clr-namespace:ArchiverSystem.Resources.Languages"
         mc:Ignorable="d"
         Title="AddAlbumView" Height="450" Width="800"
         Background="#EBEEFF">
@@ -21,16 +21,16 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Label Style="{StaticResource addEditPageTitleLabel}" Content="Add Album"/>
+            <Label Style="{StaticResource addEditPageTitleLabel}" Content="{x:Static lang:AppResources.btnSave}"/>
         </DockPanel>
 
-        <Label Style="{StaticResource dataLabel}" Grid.Row="1" Grid.Column="0" Content="Name: "/>
+        <Label Style="{StaticResource dataLabel}" Grid.Row="1" Grid.Column="0" Content="{x:Static lang:AppResources.lblName}"/>
 
         <DockPanel Grid.Row="1" Grid.Column="1">
             <TextBox Style="{StaticResource dataTextBox}"/>
         </DockPanel>
 
-        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="0" Content="Description: "/>
+        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="0" Content="{x:Static lang:AppResources.lblDescription}"/>
 
         <DockPanel Grid.Row="2" Grid.Column="1">
             <TextBox Style="{StaticResource dataDescription}"/>
@@ -46,8 +46,8 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Style="{StaticResource saveButtonBorder}" Grid.Column="0" Grid.Row="0">
-                    <Button Style="{StaticResource saveButton}">Save Album</Button>
-                </Border>
+                    <Button Style="{StaticResource saveButton}" Command="{Binding SaveAlbumCmd}" Content="{x:Static lang:AppResources.btnSave}"></Button>
+                </Border> 
             </Grid>
         </DockPanel>
 
