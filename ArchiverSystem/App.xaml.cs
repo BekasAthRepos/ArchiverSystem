@@ -18,25 +18,11 @@ namespace ArchiverSystem
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            SetLanguageDictionary();
-        }
-
-        private void SetLanguageDictionary()
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            ResourceDictionary resDic = new ResourceDictionary
             {
-                case "en-US":
-                    dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
-                    break;
-                case "fr-CA":
-                    dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
-                    break;
-            }
-            this.Resources.MergedDictionaries.Add(dict);
+                Source = new Uri($"./Resources/Languages/StringResource-eng.xaml", UriKind.Relative)
+            };        
+            Current.Resources.MergedDictionaries.Add(resDic);
         }
     }
 }

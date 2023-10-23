@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArchiverSystem.Model;
+using ArchiverSystem.Service;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,33 +14,25 @@ namespace ArchiverSystem.ViewModel
 {
     public class AddAlbumModel
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Album NewAlbum { get; set; }
         public RelayCommand SaveAlbumCmd => new RelayCommand(execute => AddNewAlbum());
-        private ResourceDictionary _resourceDictionary;
 
-        public AddAlbumModel() 
-        {
-            _resourceDictionary = new ResourceDictionary();
-           // _resourceDictionary.Source = new Uri()
-        }
+        private DAL db;
 
-        private void AddNewAlbum()
+        public AddAlbumModel() { }
+
+        private async void AddNewAlbum()
         {
-            if (String.IsNullOrEmpty(Name))
+            if (String.IsNullOrEmpty(NewAlbum.Name))
             {
-                MessageBox.Show(Name);
+                MessageBox.Show(Application.Current.FindResource("nullField").ToString() + " " +
+                    Application.Current.FindResource("name").ToString(),
+                    Application.Current.FindResource("warning").ToString()
+                    );
+                return;
             }
-        }
 
-        private bool CheckFilledField(String field)
-        {
-            if (String.IsNullOrEmpty(field))
-            {
-                //MessageBox.Show();
-                return false;
-            }
-            return false;
+            await db.InsertAlbumAsync();
         }
     }
 }

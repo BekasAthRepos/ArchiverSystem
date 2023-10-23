@@ -19,8 +19,8 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Style="{StaticResource startPagePanel}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
-            <Border Style="{StaticResource dockPanelBorder}"> 
-                <Label Style="{StaticResource startPageTitleLabel}">Archiver</Label>
+            <Border Style="{StaticResource dockPanelBorder}">
+                <Label Style="{StaticResource startPageTitleLabel}" Content="{StaticResource mainTitle}"></Label>
             </Border>
         </DockPanel>
 
@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
-                        <Button Style="{StaticResource addButton}" Click="onAddAlbumClicked">Add Album</Button>
+                        <Button Style="{StaticResource addButton}" Content="{StaticResource addAlbum}" Click="onAddAlbumClicked"></Button>
                     </Border>
                 </Grid>
             </Border>
