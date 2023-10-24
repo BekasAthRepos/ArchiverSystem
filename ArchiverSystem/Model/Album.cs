@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,17 +18,11 @@ namespace ArchiverSystem.Model
         public DateTime InputDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
-        public Album() 
-        {
-            InputDate = DateTime.Now;
-            UpdateDate = DateTime.Now;
-        }
+        public Album() { }
 
         public void UpdateAlbum()
         {
             UpdateDate = DateTime.Now;
         }
-
-
     }
 }

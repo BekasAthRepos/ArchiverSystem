@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArchiverSystem.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace ArchiverSystem.View
         public StartPage()
         {
             InitializeComponent();
+            StartPageModel startPageModel = new StartPageModel();
+            DataContext = startPageModel;
+
             this.Height = SystemParameters.PrimaryScreenHeight * 0.7;
             this.Width = SystemParameters.PrimaryScreenWidth * 0.7;
         }

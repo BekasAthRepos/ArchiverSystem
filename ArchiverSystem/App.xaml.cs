@@ -22,7 +22,7 @@ namespace ArchiverSystem
             {
                 Source = new Uri($"./Resources/Languages/StringResource-eng.xaml", UriKind.Relative)
             };        
-            Current.Resources.MergedDictionaries.Add(resDic);
+            Application.Current.Resources.MergedDictionaries.Add(resDic);
         }
     }
 }

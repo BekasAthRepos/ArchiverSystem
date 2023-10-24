@@ -39,6 +39,32 @@
                     <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
                         <Button Style="{StaticResource addButton}" Content="{StaticResource addAlbum}" Click="onAddAlbumClicked"></Button>
                     </Border>
+                    <ListView Grid.Row="1" Grid.RowSpan="2" Name="albumList">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Row="0" Text="{Binding Name}"/>
+                                                <TextBlock Grid.Row="1" Text="{Binding Description}"/>
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn> 
+                            </GridView>
+                        </ListView.View>
+                        
+                    </ListView>
                 </Grid>
             </Border>
         </DockPanel>
