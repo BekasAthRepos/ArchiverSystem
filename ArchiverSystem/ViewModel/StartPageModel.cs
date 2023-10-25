@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows;
 
 namespace ArchiverSystem.ViewModel
 {
@@ -17,7 +17,7 @@ namespace ArchiverSystem.ViewModel
         private DAL db;
 
 
-        public List<Album> AlbumList
+        public ObservableCollection<Album> AlbumList
         {
             get { return _albumList; }
             set 
@@ -27,16 +27,24 @@ namespace ArchiverSystem.ViewModel
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+        public RelayCommand OnAlbumClick => new RelayCommand(execute => AlbumClick());
         
         public StartPageModel()
         {
             db = new DAL();
-            InitializeAsync();
+            FillAlbumList();
         }
 
-        private async void InitializeAsync()
+        private async void FillAlbumList()
         {
-            _albumList = await db.SelectAlbumsAsync();
+            List<Album> albums = await db.SelectAlbumsAsync();
+            _albumList = new ObservableCollection<Album>(albums);
+            OnPropertyChanged(nameof(AlbumList));
+        }
+
+        private async void AlbumClick()
+        {
+            MessageBox.Show("Album " + " Clicked");
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

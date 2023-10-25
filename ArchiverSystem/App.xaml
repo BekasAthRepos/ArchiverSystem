@@ -27,7 +27,46 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Foreground" Value="Blue"/>
             </Style>
-            
+
+            <!-- albumListView -->
+            <Style x:Key="albumListView" TargetType="ListView">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="Background" Value="#EBEEFF"/>
+            </Style>
+
+            <!-- albumListItemCont -->
+            <Style x:Key="albumListItemCont" TargetType="ListViewItem">
+                <Setter Property="Margin" Value="0,0,0,9"/>
+                <Setter Property="Background" Value="White"/>
+            </Style>
+
+            <!-- albumListGridView -->
+            <Style x:Key="albumListGridView" TargetType="GridViewColumnHeader">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </Style>
+
+            <!-- albumListNameLbl -->
+            <Style x:Key="albumListNameLbl" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+
+            <!-- albumListDescrLbl -->
+            <Style x:Key="albumListDescrLbl" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Style>
+
+            <!-- albumListLbl -->
+            <Style x:Key="albumListLbl" TargetType="Label">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
             <!-- addButton -->
             <Style x:Key="addButton" TargetType="Button">
                 <Setter Property="FontSize" Value="15"/>

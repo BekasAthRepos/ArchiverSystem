@@ -12,6 +12,7 @@
     
     <!-- Start Page -->
     <system:String x:Key="addAlbum">Add Album</system:String>
+    <system:String x:Key="albumList">Album List</system:String>
     
     <!-- Add Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>

@@ -36,12 +36,13 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource albumListLbl}" Content="{StaticResource albumList}"/>
                     <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
                         <Button Style="{StaticResource addButton}" Content="{StaticResource addAlbum}" Click="onAddAlbumClicked"></Button>
                     </Border>
-                    <ListView Grid.Row="1" Grid.RowSpan="2" Name="albumList">
+                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}" >
                         <ListView.View>
-                            <GridView>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource albumListGridView}">
                                 <GridViewColumn>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -52,18 +53,16 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Row="0" Text="{Binding Name}"/>
-                                                <TextBlock Grid.Row="1" Text="{Binding Description}"/>
-
+                                                <TextBlock Style="{StaticResource albumListNameLbl}" Grid.Row="0" Text="{Binding Name}"/>
+                                                <TextBlock Style="{StaticResource albumListDescrLbl}" Grid.Row="1" Text="{Binding Description}"/>
                                             </Grid>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                </GridViewColumn> 
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
-                        
                     </ListView>
                 </Grid>
             </Border>
