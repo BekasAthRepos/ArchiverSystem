@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace ArchiverSystem.ViewModel
 {
@@ -27,7 +28,7 @@ namespace ArchiverSystem.ViewModel
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        public RelayCommand OnAlbumClick => new RelayCommand(execute => AlbumClick());
+        public RelayCommand OnAlbumClick => new RelayCommand(id => AlbumClick(id));
         
         public StartPageModel()
         {
@@ -42,9 +43,9 @@ namespace ArchiverSystem.ViewModel
             OnPropertyChanged(nameof(AlbumList));
         }
 
-        private async void AlbumClick()
+        private async void AlbumClick(object id)
         {
-            MessageBox.Show("Album " + " Clicked");
+            MessageBox.Show("Album " + id.ToString() + " Clicked");
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

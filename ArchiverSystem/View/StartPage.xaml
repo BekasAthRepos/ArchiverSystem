@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArchiverSystem.View"
         mc:Ignorable="d"
-        Title="StartPage" Height="450" Width="800"
+        Title="Home Page" Height="450" Width="800"
         Background="#EBEEFF">
     <Grid>
         <Grid.RowDefinitions>
@@ -36,11 +36,12 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Label Style="{StaticResource albumListLbl}" Content="{StaticResource albumList}"/>
+                    <Label Style="{StaticResource listLbl}" Content="{StaticResource albumList}"/>
                     <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
-                        <Button Style="{StaticResource addButton}" Content="{StaticResource addAlbum}" Click="onAddAlbumClicked"></Button>
+                        <Button Style="{StaticResource addButton}" Content="{StaticResource add}" Click="onAddAlbumClicked"></Button>
                     </Border>
-                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}" >
+                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}"
+                               MouseLeftButtonUp="onAlbumClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource albumListGridView}">
                                 <GridViewColumn>
@@ -70,6 +71,46 @@
 
         <DockPanel Style="{StaticResource startPagePanel}" Grid.Column="1" Grid.Row="1">
             <Border Style="{StaticResource dockPanelBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource listLbl}" Content="{StaticResource itemList}"/>
+                    <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
+                        <Button Style="{StaticResource addButton}" Content="{StaticResource add}" Click="onAddItemClicked"></Button>
+                    </Border>
+                    <ListView Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}"
+                        MouseLeftButtonUp="onAlbumClicked">
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource itemListGridView}">
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Style="{StaticResource albumListNameLbl}" Grid.Row="0" Text="{Binding Name}"/>
+                                                <TextBlock Style="{StaticResource albumListDescrLbl}" Grid.Row="1" Text="{Binding Description}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
             </Border>
         </DockPanel>
     </Grid>

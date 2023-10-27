@@ -11,12 +11,13 @@
     <system:String x:Key="success">Success!</system:String>
     
     <!-- Start Page -->
-    <system:String x:Key="addAlbum">Add Album</system:String>
+    <system:String x:Key="add">Add</system:String>
     <system:String x:Key="albumList">Album List</system:String>
+    <system:String x:Key="itemList">Item List</system:String>
     
     <!-- Add Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>
-    <system:String x:Key="addItem">Add new Item</system:String>
+    <system:String x:Key="newItem">Add new Item</system:String>
     <system:String x:Key="nullField">This field is empty:</system:String>
     <system:String x:Key="saveAlbum">Album Saved succefully</system:String>
     

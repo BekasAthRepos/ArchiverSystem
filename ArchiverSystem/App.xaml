@@ -59,8 +59,26 @@
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
 
-            <!-- albumListLbl -->
-            <Style x:Key="albumListLbl" TargetType="Label">
+            <!-- itemListView -->
+            <Style x:Key="itemListView" TargetType="ListView">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="Background" Value="#EBEEFF"/>
+            </Style>
+
+            <!-- itemListItemCont -->
+            <Style x:Key="itemListItemCont" TargetType="ListViewItem">
+                <Setter Property="Margin" Value="0,0,0,9"/>
+                <Setter Property="Background" Value="White"/>
+            </Style>
+
+            <!-- itemListGridView -->
+            <Style x:Key="itemListGridView" TargetType="GridViewColumnHeader">
+                <Setter Property="Visibility" Value="Hidden"/>
+            </Style>
+
+            <!-- listLbl -->
+            <Style x:Key="listLbl" TargetType="Label">
                 <Setter Property="FontSize" Value="25"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Foreground" Value="Blue"/>
@@ -103,9 +121,8 @@
             <!-- dataTextBox -->
             <Style x:Key="dataTextBox" TargetType="TextBox">
                 <Setter Property="Height" Value="40"/>
-                <Setter Property="Width" Value="250"/>
                 <Setter Property="FontSize" Value="20"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="BorderThickness" Value="0"/>
             </Style>
@@ -113,9 +130,8 @@
             <!-- dataDescription -->
             <Style x:Key="dataDescription" TargetType="TextBox">
                 <Setter Property="Height" Value="100"/>
-                <Setter Property="Width" Value="300"/>
                 <Setter Property="FontSize" Value="16"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="BorderThickness" Value="0"/>
             </Style>
@@ -124,7 +140,7 @@
             <Style x:Key="dataLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Style>

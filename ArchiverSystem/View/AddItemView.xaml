@@ -1,22 +1,23 @@
-﻿<Window x:Class="ArchiverSystem.View.AddAlbumView"
+﻿<Window x:Class="ArchiverSystem.View.AddItemView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArchiverSystem.View"
         mc:Ignorable="d"
-        Title="Add Album" Height="450" Width="800"
-        Background="#EBEEFF">
+        Title="Add Item" Height="700" Width="600"
+    Background="#EBEEFF">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -26,11 +27,11 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <Label Style="{StaticResource addEditPageTitleLabel}" Content="{StaticResource newAlbum}"/>
+            <Label Style="{StaticResource addEditPageTitleLabel}" Content="{StaticResource newItem}"/>
         </DockPanel>
 
-        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="1" Content="{StaticResource name}"/>
 
+        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="1" Content="{StaticResource name}"/>
         <DockPanel Grid.Row="3" Grid.Column="1">
             <TextBox Style="{StaticResource dataTextBox}" Text="{Binding NewAlbum.Name}"/>
         </DockPanel>
@@ -52,7 +53,7 @@
 
                 <Border Style="{StaticResource saveButtonBorder}" Grid.Column="0" Grid.Row="0">
                     <Button Style="{StaticResource saveButton}" Command="{Binding SaveAlbumCmd}" Content="{StaticResource btnSave}"></Button>
-                </Border> 
+                </Border>
             </Grid>
         </DockPanel>
 

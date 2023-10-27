@@ -88,6 +88,9 @@
     <Compile Include="View\AddAlbumView.xaml.cs">
       <DependentUpon>AddAlbumView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddItemView.xaml.cs">
+      <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddAlbumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
