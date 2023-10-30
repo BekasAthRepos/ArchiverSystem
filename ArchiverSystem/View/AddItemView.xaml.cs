@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArchiverSystem.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace ArchiverSystem.View
     /// </summary>
     public partial class AddItemView : Window
     {
+        private AddItemModel _addItemModel;
+
         public AddItemView()
         {
             InitializeComponent();
+            _addItemModel = new AddItemModel();
+            DataContext = _addItemModel;
         }
     }
 }

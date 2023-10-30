@@ -30,6 +30,11 @@
             <Label Style="{StaticResource addEditPageTitleLabel}" Content="{StaticResource newItem}"/>
         </DockPanel>
 
+        <DockPanel Grid.Row="1" Grid.Column="1">
+            <Button Style="{StaticResource addImageBtn}">
+                <Image Source="..\Resources\Images\add-image.png"></Image>
+            </Button>
+        </DockPanel>
 
         <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="1" Content="{StaticResource name}"/>
         <DockPanel Grid.Row="3" Grid.Column="1">

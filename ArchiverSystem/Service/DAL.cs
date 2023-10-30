@@ -102,5 +102,74 @@ namespace ArchiverSystem.Service
             }
             return false;
         }
+
+        // -- Item functions --
+
+        //Insert Item
+        public async Task<bool> InsertItemAsync(Item item)
+        {
+            try
+            {
+                string sql = "insert into Item values (@Name, @Description, @InputDate," +
+                " @UpdateDate)";
+                int rowsAffected = await _con.ExecuteAsync(sql, album);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        //Get All Ablums
+        public async Task<List<Album>> SelectAlbumsAsync()
+        {
+            try
+            {
+                string sql = "select * from Album";
+                var albums = await _con.QueryAsync<Album>(sql);
+                return albums.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        //Get Ablum by Id
+        public async Task<Album> SelectAlbumByIdAsync(int id)
+        {
+            try
+            {
+                string sql = "select * from Album where Id = @Id";
+                Album album = await _con.QueryFirstAsync<Album>(sql, new { Id = id });
+                return album;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        //Delete Album by Id
+        public async Task<bool> DeleteAlbumByIdAsync(int id)
+        {
+            try
+            {
+                //string sql = "delete from Item where "; 
+                // sql = "delete from Album where Id = @id";
+                //int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
+                //if
+                //return affectedRows > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
     }
 }
