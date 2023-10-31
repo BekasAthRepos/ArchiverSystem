@@ -7,6 +7,7 @@
     <system:String x:Key="btnSave">Save</system:String>
     <system:String x:Key="name">Name</system:String>
     <system:String x:Key="description">Description</system:String>
+    <system:String x:Key="qty">Qty</system:String>
     <system:String x:Key="warning">Warning!</system:String>
     <system:String x:Key="success">Success!</system:String>
     
@@ -19,8 +20,7 @@
     <system:String x:Key="newAlbum">Add new Album</system:String>
     <system:String x:Key="newItem">Add new Item</system:String>
     <system:String x:Key="nullField">This field is empty:</system:String>
-    <system:String x:Key="saveAlbum">Album Saved succefully</system:String>
+    <system:String x:Key="saveAlbum">Album saved succefully</system:String>
+    <system:String x:Key="saveItem">Item saved succefully</system:String>
     
-    
-
 </ResourceDictionary>

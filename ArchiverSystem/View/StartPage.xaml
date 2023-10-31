@@ -86,7 +86,7 @@
                         <Button Style="{StaticResource addButton}" Content="{StaticResource add}" Click="onAddItemClicked"></Button>
                     </Border>
                     <ListView Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}"
-                        MouseLeftButtonUp="onAlbumClicked">
+                        MouseLeftButtonUp="onItemClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource itemListGridView}">
                                 <GridViewColumn>

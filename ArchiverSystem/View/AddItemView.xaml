@@ -23,14 +23,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
             <Label Style="{StaticResource addEditPageTitleLabel}" Content="{StaticResource newItem}"/>
         </DockPanel>
 
-        <DockPanel Grid.Row="1" Grid.Column="1">
+        <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Button Style="{StaticResource addImageBtn}">
                 <Image Source="..\Resources\Images\add-image.png"></Image>
             </Button>
@@ -38,16 +39,21 @@
 
         <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="1" Content="{StaticResource name}"/>
         <DockPanel Grid.Row="3" Grid.Column="1">
-            <TextBox Style="{StaticResource dataTextBox}" Text="{Binding NewAlbum.Name}"/>
+            <TextBox Style="{StaticResource dataTextBox}" Text="{Binding NewItem.Name}"/>
         </DockPanel>
 
-        <Label Style="{StaticResource dataLabel}" Grid.Row="4" Grid.Column="1" Content="{StaticResource description}"/>
-
-        <DockPanel Grid.Row="5" Grid.Column="1">
-            <TextBox Style="{StaticResource dataDescription}" Text="{Binding NewAlbum.Description}"/>
+        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Grid.Column="2" Content="{StaticResource qty}"/>
+        <DockPanel Grid.Row="3" Grid.Column="2">
+            <TextBox Style="{StaticResource numTextBox}" Text="{Binding NewItem.Qty}" PreviewTextInput="NumberValidationTextBox"/>
         </DockPanel>
 
-        <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
+        <Label Style="{StaticResource dataLabel}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="{StaticResource description}"/>
+
+        <DockPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+            <TextBox Style="{StaticResource dataDescription}" Text="{Binding NewItem.Description}"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -57,7 +63,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Style="{StaticResource saveButtonBorder}" Grid.Column="0" Grid.Row="0">
-                    <Button Style="{StaticResource saveButton}" Command="{Binding SaveAlbumCmd}" Content="{StaticResource btnSave}"></Button>
+                    <Button Style="{StaticResource saveButton}" Command="{Binding SaveItemCmd}" Content="{StaticResource btnSave}"></Button>
                 </Border>
             </Grid>
         </DockPanel>

@@ -30,7 +30,6 @@ namespace ArchiverSystem.ViewModel
         public RelayCommand SaveItemCmd => new RelayCommand(execute => AddNewItem());
         public event PropertyChangedEventHandler PropertyChanged;
 
-
         public AddItemModel()
         {
             _newItem = new Item();
@@ -50,17 +49,17 @@ namespace ArchiverSystem.ViewModel
 
             _newItem.InputDate = DateTime.Now;
             _newItem.UpdateDate = DateTime.Now;
+            _newItem.Qty = 0;
             if (await db.InsertItemAsync(_newItem))
             {
 
-                MessageBox.Show(Application.Current.FindResource("saveAlbum").ToString(),
+                MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
-                _newAlbum = new Album();
-                OnPropertyChanged(nameof(NewAlbum));
+                _newItem = new Item();
+                OnPropertyChanged(nameof(NewItem));
             }
         }
-
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

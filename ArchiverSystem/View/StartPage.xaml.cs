@@ -22,6 +22,7 @@ namespace ArchiverSystem.View
     public partial class StartPage : Window
     {
         StartPageModel _startPageModel;
+        private int _selectedAlbumId;
         public StartPage()
         {
             InitializeComponent();
@@ -42,13 +43,26 @@ namespace ArchiverSystem.View
         {
             var lAlbum = (sender as ListView).SelectedItem;
             Album album = lAlbum as Album;
+            _selectedAlbumId = album.Id;
             _startPageModel.OnAlbumClick.Execute(album.Id);
         }
 
         private void onAddItemClicked(object sender, EventArgs e)
         {
-            AddItemView addItemView = new AddItemView();
-            addItemView.ShowDialog();
+            if(_selectedAlbumId > 0)
+            {
+                AddItemView addItemView = new AddItemView(_selectedAlbumId);
+                MessageBox.Show(_selectedAlbumId.ToString());
+                addItemView.ShowDialog();
+            }else
+                MessageBox.Show("No album selected");
+        }
+
+        private void onItemClicked(object sender, MouseButtonEventArgs e)
+        {
+            //var lAlbum = (sender as ListView).SelectedItem;
+            //Album album = lAlbum as Album;
+            //_startPageModel.OnAlbumClick.Execute(album.Id);
         }
     }
 }

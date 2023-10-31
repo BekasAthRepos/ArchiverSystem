@@ -124,6 +124,16 @@
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Margin" Value="0,0,30,0"/>
+            </Style>
+
+            <!-- numTextBox -->
+            <Style x:Key="numTextBox" TargetType="TextBox">
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="BorderThickness" Value="0"/>
             </Style>
 
             <!-- dataDescription -->

@@ -86,17 +86,34 @@ namespace ArchiverSystem.Service
             return null;
         }
 
+        //Update Album 
+        public async Task<bool> UpdateAlbum(Album album)
+        {
+            try
+            {
+                string sql = "update Album set Name = @Name, Description = @Description, UpdateDate = @UpdateDate" +
+                    " where Id=@id";
+                int affectedRows = await _con.ExecuteAsync(sql, new { album });
+                return affectedRows > 0;
+            }catch(Exception ex)
+            { 
+                Console.WriteLine(ex.Message); 
+            }
+            return false;
+        }
+
         //Delete Album by Id
         public async Task<bool> DeleteAlbumByIdAsync(int id)
         {
             try
             {
-                //string sql = "delete from Item where "; 
-               // sql = "delete from Album where Id = @id";
-                //int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
-                //if
-                //return affectedRows > 0;
-            }catch (Exception ex)
+                string sql1 = "delete from Item where AlbumId = @id"; 
+                string sql2 = "delete from Album where Id = @id";
+                await _con.ExecuteAsync(sql1, new { Id = id });
+                int affectedRows = await _con.ExecuteAsync(sql2, new { Id = id });
+                return affectedRows > 0;
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -110,9 +127,9 @@ namespace ArchiverSystem.Service
         {
             try
             {
-                string sql = "insert into Item values (@Name, @Description, @InputDate," +
+                string sql = "insert into Item values (@AlbumId, @Name, @Description, @Qty, @InputDate," +
                 " @UpdateDate)";
-                int rowsAffected = await _con.ExecuteAsync(sql, album);
+                int rowsAffected = await _con.ExecuteAsync(sql, item);
                 return rowsAffected > 0;
             }
             catch (Exception ex)
@@ -122,13 +139,13 @@ namespace ArchiverSystem.Service
             return false;
         }
 
-        //Get All Ablums
-        public async Task<List<Album>> SelectAlbumsAsync()
+        //Get All Items
+        public async Task<List<Item>> SelectItemsAsync()
         {
             try
             {
-                string sql = "select * from Album";
-                var albums = await _con.QueryAsync<Album>(sql);
+                string sql = "select * from Item";
+                var albums = await _con.QueryAsync<Item>(sql);
                 return albums.ToList();
             }
             catch (Exception ex)
@@ -138,14 +155,14 @@ namespace ArchiverSystem.Service
             return null;
         }
 
-        //Get Ablum by Id
-        public async Task<Album> SelectAlbumByIdAsync(int id)
+        //Get Item by Id
+        public async Task<Item> SelectItemByIdAsync(int id)
         {
             try
             {
-                string sql = "select * from Album where Id = @Id";
-                Album album = await _con.QueryFirstAsync<Album>(sql, new { Id = id });
-                return album;
+                string sql = "select * from Item where Id = @Id";
+                Item item = await _con.QueryFirstAsync<Item>(sql, new { Id = id });
+                return item;
             }
             catch (Exception ex)
             {
@@ -154,16 +171,32 @@ namespace ArchiverSystem.Service
             return null;
         }
 
-        //Delete Album by Id
-        public async Task<bool> DeleteAlbumByIdAsync(int id)
+        //Update Item 
+        public async Task<bool> UpdateItem(Item item)
         {
             try
             {
-                //string sql = "delete from Item where "; 
-                // sql = "delete from Album where Id = @id";
-                //int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
-                //if
-                //return affectedRows > 0;
+                string sql = "update Item set AlbumId = @AlbumId, Name = @Name, Description = @Description, Qty = @Qty, UpdateDate = @UpdateDate" +
+                    " where Id=@id";
+                int affectedRows = await _con.ExecuteAsync(sql, new { item });
+                return affectedRows > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        //Delete Item by Id
+        public async Task<bool> DeleteItemByIdAsync(int id)
+        {
+            try
+            {
+                string sql = "delete from Item where id = @id"; 
+                int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
+             
+                return affectedRows > 0;
             }
             catch (Exception ex)
             {
