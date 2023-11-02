@@ -32,8 +32,8 @@
         </DockPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button Style="{StaticResource addImageBtn}">
-                <Image Source="..\Resources\Images\add-image.png"></Image>
+            <Button Style="{StaticResource addImageBtn}" Command="{Binding LoadImgCmd}">
+                <Image x:Name="img" Source="{Binding NewItem.Image}"></Image>
             </Button>
         </DockPanel>
 

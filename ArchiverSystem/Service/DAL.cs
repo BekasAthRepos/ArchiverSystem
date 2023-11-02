@@ -128,7 +128,7 @@ namespace ArchiverSystem.Service
             try
             {
                 string sql = "insert into Item values (@AlbumId, @Name, @Description, @Qty, @InputDate," +
-                " @UpdateDate)";
+                " @UpdateDate, @Image)";
                 int rowsAffected = await _con.ExecuteAsync(sql, item);
                 return rowsAffected > 0;
             }
@@ -176,8 +176,8 @@ namespace ArchiverSystem.Service
         {
             try
             {
-                string sql = "update Item set AlbumId = @AlbumId, Name = @Name, Description = @Description, Qty = @Qty, UpdateDate = @UpdateDate" +
-                    " where Id=@id";
+                string sql = "update Item set AlbumId = @AlbumId, Name = @Name, Description = @Description, Qty = @Qty, UpdateDate = @UpdateDate," +
+                    " Image = @Image where Id=@id";
                 int affectedRows = await _con.ExecuteAsync(sql, new { item });
                 return affectedRows > 0;
             }

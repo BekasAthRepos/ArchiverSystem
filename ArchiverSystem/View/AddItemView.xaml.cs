@@ -27,23 +27,20 @@ namespace ArchiverSystem.View
         public AddItemView(int albumId)
         {
             InitializeComponent();
-            _addItemModel = new AddItemModel();
+            _addItemModel = new AddItemModel(albumId);
             DataContext = _addItemModel;
             _albumId = albumId;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9.-]+"); // Allow digits, minus sign, and decimal point
-
-            // Check if the proposed text contains more than one decimal point
+            Regex regex = new Regex("[^0-9.-]+"); 
             string proposedText = (sender as TextBox).Text + e.Text;
             if (proposedText.Count(c => c == '.') > 1)
             {
                 e.Handled = true;
                 return;
             }
-
             e.Handled = regex.IsMatch(e.Text);
         }
     }

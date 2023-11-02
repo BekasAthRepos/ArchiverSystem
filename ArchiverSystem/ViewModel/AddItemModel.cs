@@ -1,5 +1,6 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ArchiverSystem.ViewModel
 {
@@ -27,12 +30,15 @@ namespace ArchiverSystem.ViewModel
                 }
             }
         }
+
         public RelayCommand SaveItemCmd => new RelayCommand(execute => AddNewItem());
+        public RelayCommand LoadImgCmd => new RelayCommand(execute => LoadImage());
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AddItemModel()
+        public AddItemModel(int albumId)
         {
             _newItem = new Item();
+            _newItem.AlbumId = albumId;
             db = new DAL();
         }
 
@@ -57,6 +63,17 @@ namespace ArchiverSystem.ViewModel
                     Application.Current.FindResource("success").ToString()
                     );
                 _newItem = new Item();
+                OnPropertyChanged(nameof(NewItem));
+            }
+        }
+
+        private void LoadImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files|*.jpg;*.bmp;*png";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                _newItem.Image = new BitmapImage(new Uri(openFileDialog.FileName));
                 OnPropertyChanged(nameof(NewItem));
             }
         }

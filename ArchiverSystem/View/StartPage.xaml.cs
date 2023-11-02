@@ -52,10 +52,9 @@ namespace ArchiverSystem.View
             if(_selectedAlbumId > 0)
             {
                 AddItemView addItemView = new AddItemView(_selectedAlbumId);
-                MessageBox.Show(_selectedAlbumId.ToString());
                 addItemView.ShowDialog();
             }else
-                MessageBox.Show("No album selected");
+                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
         }
 
         private void onItemClicked(object sender, MouseButtonEventArgs e)

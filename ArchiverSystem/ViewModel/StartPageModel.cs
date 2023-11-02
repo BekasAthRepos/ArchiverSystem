@@ -45,7 +45,7 @@ namespace ArchiverSystem.ViewModel
 
         private async void AlbumClick(object id)
         {
-            MessageBox.Show("Album " + id.ToString() + " Clicked");
+            //MessageBox.Show("Album " + id.ToString() + " Clicked");
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

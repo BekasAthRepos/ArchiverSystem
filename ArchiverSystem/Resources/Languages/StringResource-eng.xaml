@@ -15,6 +15,7 @@
     <system:String x:Key="add">Add</system:String>
     <system:String x:Key="albumList">Album List</system:String>
     <system:String x:Key="itemList">Item List</system:String>
+    <system:String x:Key="noAlbumSelected">No album selected</system:String>
     
     <!-- Add Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>
@@ -22,5 +23,8 @@
     <system:String x:Key="nullField">This field is empty:</system:String>
     <system:String x:Key="saveAlbum">Album saved succefully</system:String>
     <system:String x:Key="saveItem">Item saved succefully</system:String>
+    
+    <!-- Paths -->
+    <system:String x:Key="newItemImg">pack://application:,,,/Resources/Images/add-image.png</system:String>
     
 </ResourceDictionary>

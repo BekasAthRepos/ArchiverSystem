@@ -14,5 +14,6 @@ CREATE TABLE [dbo].[Item]
     [Description] NCHAR(100) NULL, 
     [Qty] FLOAT NULL, 
     [InputDate] DATETIME NULL, 
-    [UpdateDate] DATETIME NULL 
+    [UpdateDate] DATETIME NULL, 
+    [Image] IMAGE null
 );
