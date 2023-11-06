@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace ArchiverSystem.View
 {
-    /// <summary>
-    /// Interaction logic for AddItemView.xaml
-    /// </summary>
     public partial class AddItemView : Window
     {
         private AddItemModel _addItemModel;
@@ -36,7 +33,7 @@ namespace ArchiverSystem.View
         {
             Regex regex = new Regex("[^0-9.-]+"); 
             string proposedText = (sender as TextBox).Text + e.Text;
-            if (proposedText.Count(c => c == '.') > 1)
+            if (proposedText.Count(c => c == '.') > 1) 
             {
                 e.Handled = true;
                 return;

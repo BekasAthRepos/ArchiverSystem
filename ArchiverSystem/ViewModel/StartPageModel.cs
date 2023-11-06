@@ -1,5 +1,6 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace ArchiverSystem.ViewModel
     public class StartPageModel : INotifyPropertyChanged
     {
         private ObservableCollection<Album> _albumList;
+        private ObservableCollection<Item> _itemList;
         private DAL db;
 
 
@@ -27,25 +29,57 @@ namespace ArchiverSystem.ViewModel
                 OnPropertyChanged(nameof(AlbumList));
             }
         }
+
+        public ObservableCollection<Item> ItemList
+        {
+            get { return _itemList; }
+            set
+            {
+                _itemList = value;
+                OnPropertyChanged(nameof(ItemList));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand OnAlbumClick => new RelayCommand(id => AlbumClick(id));
         
         public StartPageModel()
         {
+            Initialization();
+        }
+
+        private void Initialization()
+        {
             db = new DAL();
             FillAlbumList();
+            Messenger.Default.Register<PropertyUpdateMessage>(this, message =>
+            {
+                if (message.PropertyName == "AlbumList")
+                {
+                    FillAlbumList();
+                }
+                if (message.PropertyName == "ItemList")
+                {
+                    FillItemList((int)message.Value);
+                }
+            });
         }
 
         private async void FillAlbumList()
         {
             List<Album> albums = await db.SelectAlbumsAsync();
-            _albumList = new ObservableCollection<Album>(albums);
-            OnPropertyChanged(nameof(AlbumList));
+            AlbumList = new ObservableCollection<Album>(albums);
         }
 
-        private async void AlbumClick(object id)
+        private async void FillItemList(int albumId)
         {
-            //MessageBox.Show("Album " + id.ToString() + " Clicked");
+            List<Item> items = await db.SelectAlbumItemsAsync(albumId);
+            ItemList = new ObservableCollection<Item>(items);
+        }
+
+        private void AlbumClick(object id)
+        {
+            FillItemList((int)id);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

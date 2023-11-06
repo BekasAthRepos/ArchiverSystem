@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ArchiverSystem.Model
@@ -15,20 +16,18 @@ namespace ArchiverSystem.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public double Qty { get; set; }
-        public BitmapImage Image {get; set;}
         public DateTime InputDate { get; set; }
         public DateTime UpdateDate { get; set;}
+        public byte[] Image {get; set;}
 
         public Item() 
         {
-            InputDate = DateTime.Now;
-            UpdateDate = DateTime.Now;
+            
         }
 
         public void UpdateItem()
         {
             UpdateDate = DateTime.Now;
         }
-
     }
 }

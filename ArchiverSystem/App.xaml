@@ -61,7 +61,6 @@
             <!-- itemListView -->
             <Style x:Key="itemListView" TargetType="ListView">
                 <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
                 <Setter Property="Background" Value="#EBEEFF"/>
             </Style>
 
@@ -74,6 +73,28 @@
             <!-- itemListGridView -->
             <Style x:Key="itemListGridView" TargetType="GridViewColumnHeader">
                 <Setter Property="Visibility" Value="Hidden"/>
+            </Style>
+
+            <!-- itemListNameLbl -->
+            <Style x:Key="itemListNameLbl" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <!-- itemListDescrLbl -->
+            <Style x:Key="itemListDescrLbl" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <!-- itemListImg -->
+            <Style x:Key="itemListImg" TargetType="Image">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="250"/>
+                <Setter Property="Height" Value="250"/>
             </Style>
 
             <!-- listLbl -->

@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace ArchiverSystem.View
 {
-    /// <summary>
-    /// Interaction logic for StartPage.xaml
-    /// </summary>
     public partial class StartPage : Window
     {
         StartPageModel _startPageModel;
@@ -42,9 +39,12 @@ namespace ArchiverSystem.View
         private void onAlbumClicked(object sender, MouseButtonEventArgs e)
         {
             var lAlbum = (sender as ListView).SelectedItem;
-            Album album = lAlbum as Album;
-            _selectedAlbumId = album.Id;
-            _startPageModel.OnAlbumClick.Execute(album.Id);
+            if(lAlbum != null)
+            {
+                Album album = lAlbum as Album;
+                _selectedAlbumId = album.Id;
+                _startPageModel.OnAlbumClick.Execute(album.Id);
+            }
         }
 
         private void onAddItemClicked(object sender, EventArgs e)

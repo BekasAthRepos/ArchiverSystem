@@ -1,5 +1,6 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -60,11 +61,14 @@ namespace ArchiverSystem.ViewModel
                 MessageBox.Show(Application.Current.FindResource("saveAlbum").ToString(), 
                     Application.Current.FindResource("success").ToString()
                     );
-                _newAlbum = new Album();
-                OnPropertyChanged(nameof(NewAlbum));
+                NewAlbum = new Album();
+
+                Messenger.Default.Send(new PropertyUpdateMessage
+                {
+                    PropertyName = "AlbumList"
+                });
             }
         }
-
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

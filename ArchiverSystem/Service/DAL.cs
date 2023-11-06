@@ -12,6 +12,7 @@ using System.IO;
 using System.Windows.Markup;
 using System.Data;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 
 namespace ArchiverSystem.Service
 {
@@ -146,6 +147,22 @@ namespace ArchiverSystem.Service
             {
                 string sql = "select * from Item";
                 var albums = await _con.QueryAsync<Item>(sql);
+                return albums.ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        //Get All Album Items
+        public async Task<List<Item>> SelectAlbumItemsAsync(int albumId)
+        {
+            try
+            {
+                string sql = "select * from Item where AlbumId = @AlbumId";
+                var albums = await _con.QueryAsync<Item>(sql, new { AlbumId = albumId }); ;
                 return albums.ToList();
             }
             catch (Exception ex)

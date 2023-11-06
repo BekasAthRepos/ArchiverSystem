@@ -1,22 +1,27 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ArchiverSystem.ViewModel
 {
-    public class AddItemModel
+    public class AddItemModel: INotifyPropertyChanged
     {
         private DAL db;
         private Item _newItem;
+        private BitmapImage _itemImage;
+        private bool _defaultImage;
 
         public Item NewItem
         {
@@ -31,19 +36,40 @@ namespace ArchiverSystem.ViewModel
             }
         }
 
+        public BitmapImage ItemImage
+        {
+            get { return _itemImage; }
+            set
+            {
+                if (_itemImage != value)
+                {
+                    _itemImage = value;
+                    OnPropertyChanged(nameof(ItemImage));
+                }
+            }
+        }
+
         public RelayCommand SaveItemCmd => new RelayCommand(execute => AddNewItem());
         public RelayCommand LoadImgCmd => new RelayCommand(execute => LoadImage());
         public event PropertyChangedEventHandler PropertyChanged;
 
         public AddItemModel(int albumId)
         {
+            Initialization(albumId);
+        }
+
+        private void Initialization(int albumId)
+        {
+            db = new DAL();
             _newItem = new Item();
             _newItem.AlbumId = albumId;
-            db = new DAL();
+            _newItem.Qty = 1;
+            SetDefaultImage();
         }
 
         private async void AddNewItem()
         {
+            int albumId = _newItem.AlbumId;
             if (String.IsNullOrEmpty(_newItem.Name))
             {
                 MessageBox.Show(Application.Current.FindResource("nullField").ToString() + " " +
@@ -55,15 +81,29 @@ namespace ArchiverSystem.ViewModel
 
             _newItem.InputDate = DateTime.Now;
             _newItem.UpdateDate = DateTime.Now;
-            _newItem.Qty = 0;
+            if (!_defaultImage)
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    JpegBitmapEncoder encoder = new JpegBitmapEncoder(); // Or appropriate encoder
+                    encoder.Frames.Add(BitmapFrame.Create(ItemImage));
+                    encoder.Save(stream);
+                    _newItem.Image = stream.ToArray();
+                }
+            }
             if (await db.InsertItemAsync(_newItem))
             {
 
                 MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
-                _newItem = new Item();
-                OnPropertyChanged(nameof(NewItem));
+                NewItem = new Item();
+                SetDefaultImage();
+                Messenger.Default.Send(new PropertyUpdateMessage
+                {
+                    PropertyName = "ItemList",
+                    Value = albumId
+                }); 
             }
         }
 
@@ -73,9 +113,15 @@ namespace ArchiverSystem.ViewModel
             openFileDialog.Filter = "Image files|*.jpg;*.bmp;*png";
             if(openFileDialog.ShowDialog() == true)
             {
-                _newItem.Image = new BitmapImage(new Uri(openFileDialog.FileName));
-                OnPropertyChanged(nameof(NewItem));
+                ItemImage = new BitmapImage(new Uri(openFileDialog.FileName));
+                _defaultImage = false;
             }
+        }
+
+        private void SetDefaultImage()
+        {
+            ItemImage = new BitmapImage(new Uri(Application.Current.FindResource("newItemImg").ToString()));
+            _defaultImage = true;
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
