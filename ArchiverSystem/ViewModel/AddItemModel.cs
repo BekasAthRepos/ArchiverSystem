@@ -18,7 +18,7 @@ namespace ArchiverSystem.ViewModel
 {
     public class AddItemModel: INotifyPropertyChanged
     {
-        private DAL db;
+        private DAL _db;
         private Item _newItem;
         private BitmapImage _itemImage;
         private bool _defaultImage;
@@ -60,7 +60,7 @@ namespace ArchiverSystem.ViewModel
 
         private void Initialization(int albumId)
         {
-            db = new DAL();
+            _db = new DAL();
             _newItem = new Item();
             _newItem.AlbumId = albumId;
             _newItem.Qty = 1;
@@ -91,7 +91,7 @@ namespace ArchiverSystem.ViewModel
                     _newItem.Image = stream.ToArray();
                 }
             }
-            if (await db.InsertItemAsync(_newItem))
+            if (await _db.InsertItemAsync(_newItem))
             {
 
                 MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),

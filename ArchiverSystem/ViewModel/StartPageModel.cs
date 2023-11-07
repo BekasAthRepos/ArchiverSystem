@@ -17,7 +17,7 @@ namespace ArchiverSystem.ViewModel
     {
         private ObservableCollection<Album> _albumList;
         private ObservableCollection<Item> _itemList;
-        private DAL db;
+        private DAL _db;
 
 
         public ObservableCollection<Album> AlbumList
@@ -50,7 +50,7 @@ namespace ArchiverSystem.ViewModel
 
         private void Initialization()
         {
-            db = new DAL();
+            _db = new DAL();
             FillAlbumList();
             Messenger.Default.Register<PropertyUpdateMessage>(this, message =>
             {
@@ -67,13 +67,13 @@ namespace ArchiverSystem.ViewModel
 
         private async void FillAlbumList()
         {
-            List<Album> albums = await db.SelectAlbumsAsync();
+            List<Album> albums = await _db.SelectAlbumsAsync();
             AlbumList = new ObservableCollection<Album>(albums);
         }
 
         private async void FillItemList(int albumId)
         {
-            List<Item> items = await db.SelectAlbumItemsAsync(albumId);
+            List<Item> items = await _db.SelectAlbumItemsAsync(albumId);
             ItemList = new ObservableCollection<Item>(items);
         }
 

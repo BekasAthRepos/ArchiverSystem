@@ -30,12 +30,6 @@ namespace ArchiverSystem.View
             this.Width = SystemParameters.PrimaryScreenWidth * 0.7;
         }
 
-        private void onAddAlbumClicked(object sender, EventArgs e)
-        {
-            AddAlbumView addAlbumView = new AddAlbumView();
-            addAlbumView.ShowDialog();
-        }
-
         private void onAlbumClicked(object sender, MouseButtonEventArgs e)
         {
             var lAlbum = (sender as ListView).SelectedItem;
@@ -44,6 +38,30 @@ namespace ArchiverSystem.View
                 Album album = lAlbum as Album;
                 _selectedAlbumId = album.Id;
                 _startPageModel.OnAlbumClick.Execute(album.Id);
+            }
+        }
+
+        private void onAddAlbumClicked(object sender, EventArgs e)
+        {
+            AddAlbumView addAlbumView = new AddAlbumView();
+            addAlbumView.ShowDialog();
+        }
+
+        private void onEditAlbumClicked(object sender, EventArgs e)
+        {
+            AddAlbumView addAlbumView = new AddAlbumView();
+            addAlbumView.ShowDialog();
+        }
+
+        private void onDeleteAlbumClicked(object sender, MouseButtonEventArgs e)
+        {
+            var lAlbum = (sender as ListView).SelectedItem;
+            if (lAlbum != null)
+            {
+                Album album = lAlbum as Album;
+                _selectedAlbumId = album.Id;
+                DeleteAlbumModel deleteAlbum = new DeleteAlbumModel();
+                deleteAlbum.DeleteAlbumCmd.Execute(_selectedAlbumId);
             }
         }
 

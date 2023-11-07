@@ -67,8 +67,8 @@
 
             <!-- itemListItemCont -->
             <Style x:Key="itemListItemCont" TargetType="ListViewItem">
-                <Setter Property="Margin" Value="0,0,0,9"/>
                 <Setter Property="Background" Value="White"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             </Style>
 
             <!-- itemListGridView -->
@@ -81,8 +81,8 @@
                 <Setter Property="Margin" Value="3"/>
             </Style>
 
-            <!-- itemCellDataPanel -->
-            <Style x:Key="itemCellDataPanel" TargetType="StackPanel">
+            <!-- itemCellDataGrid -->
+            <Style x:Key="itemCellDataGrid" TargetType="Grid">
                 <Setter Property="Margin" Value="3"/>
             </Style>
 
@@ -91,14 +91,24 @@
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="FontSize" Value="25"/>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Padding" Value="20,0,0,0"/>
+            </Style>
+
+            <!-- itemListQtyLbl -->
+            <Style x:Key="itemListQtyLbl" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Padding" Value="20,0,0,0"/>
             </Style>
 
             <!-- itemListDescrLbl -->
             <Style x:Key="itemListDescrLbl" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Padding" Value="20,20,0,0"/>
             </Style>
 
             <!-- itemListImg -->
@@ -117,13 +127,10 @@
 
             <!-- addButton -->
             <Style x:Key="addButton" TargetType="Button">
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Background" Value="Blue"/>
-                <Setter Property="BorderBrush" Value="Blue"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Margin" Value="2"/>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
@@ -131,6 +138,11 @@
                         <Setter Property="Background" Value="Blue"/>
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+
+            <!-- toolImg -->
+            <Style x:Key="toolImg" TargetType="Image">
+                <Setter Property="Width" Value="25"/>
             </Style>
 
             <!-- addButtonBorder -->

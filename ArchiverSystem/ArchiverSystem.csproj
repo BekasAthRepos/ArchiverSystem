@@ -100,7 +100,8 @@
     <Compile Include="Service\PropertyUpdateMessage.cs" />
     <Compile Include="ViewModel\AddAlbumModel.cs" />
     <Compile Include="ViewModel\AddItemModel.cs" />
-    <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\DeleteAlbumModel.cs" />
+    <Compile Include="Service\RelayCommand.cs" />
     <Compile Include="ViewModel\StartPageModel.cs" />
     <Compile Include="View\AddAlbumView.xaml.cs">
       <DependentUpon>AddAlbumView.xaml</DependentUpon>

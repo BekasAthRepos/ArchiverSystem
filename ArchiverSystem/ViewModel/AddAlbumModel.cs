@@ -17,7 +17,7 @@ namespace ArchiverSystem.ViewModel
 {
     public class AddAlbumModel : INotifyPropertyChanged
     {
-        private DAL db;
+        private DAL _db;
         private Album _newAlbum;
 
         public Album NewAlbum
@@ -39,7 +39,7 @@ namespace ArchiverSystem.ViewModel
         public AddAlbumModel() 
         {
             _newAlbum = new Album();
-            db = new DAL();
+            _db = new DAL();
         }
 
         private async void AddNewAlbum()
@@ -55,7 +55,7 @@ namespace ArchiverSystem.ViewModel
 
             _newAlbum.InputDate = DateTime.Now;
             _newAlbum.UpdateDate = DateTime.Now;
-            if(await db.InsertAlbumAsync(_newAlbum))
+            if(await _db.InsertAlbumAsync(_newAlbum))
             {
 
                 MessageBox.Show(Application.Current.FindResource("saveAlbum").ToString(), 

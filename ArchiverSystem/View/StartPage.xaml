@@ -35,12 +35,20 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Style="{StaticResource listLbl}" Content="{StaticResource albumList}"/>
-                    <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
-                        <Button Style="{StaticResource addButton}" Content="{StaticResource add}" Click="onAddAlbumClicked"></Button>
-                    </Border>
-                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding AlbumList}"
+                    <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource addButton}" Click="onAddAlbumClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/plus.png"/>
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource addButton}" Click="onAddAlbumClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/edit.png"/>
+                    </Button>
+                    <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource addButton}" Click="onDeleteAlbumClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/delete.png"/>
+                    </Button>
+                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding AlbumList}"
                                MouseLeftButtonUp="onAlbumClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource albumListGridView}">
@@ -89,15 +97,29 @@
                         MouseLeftButtonUp="onItemClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource itemListGridView}">
-                                <GridViewColumn>
+                                <GridViewColumn >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Style="{StaticResource itemCellPanel}" Orientation="Horizontal">
                                                 <Image Style="{StaticResource itemListImg}" Source="{Binding Image}"/>
-                                                <StackPanel Style="{StaticResource itemCellDataPanel}">
-                                                    <TextBlock Style="{StaticResource itemListNameLbl}" Text="{Binding Name}"/>
-                                                    <TextBlock Style="{StaticResource itemListDescrLbl}" Text="{Binding Description}"/>
-                                                </StackPanel>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource itemListNameLbl}" Text="{Binding Name}"/>
+                                                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource itemListQtyLbl}">
+                                                        <Run Text="Qty: " />
+                                                        <Run Text="{Binding Qty}" />
+                                                    </TextBlock>
+                                                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource itemListDescrLbl}" Text="{Binding Description}"/>
+                                                </Grid>
                                             </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

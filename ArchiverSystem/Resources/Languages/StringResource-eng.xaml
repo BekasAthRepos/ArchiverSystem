@@ -10,12 +10,14 @@
     <system:String x:Key="qty">Qty</system:String>
     <system:String x:Key="warning">Warning!</system:String>
     <system:String x:Key="success">Success!</system:String>
+    <system:String x:Key="Error">Error!</system:String>
     
     <!-- Start Page -->
     <system:String x:Key="add">Add</system:String>
     <system:String x:Key="albumList">Album List</system:String>
     <system:String x:Key="itemList">Item List</system:String>                              
     <system:String x:Key="noAlbumSelected">No album selected</system:String>
+    <system:String x:Key="albumDeleted">Album deleted succesfully</system:String>
     
     <!-- Add Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>
