@@ -62,6 +62,7 @@
             <Style x:Key="itemListView" TargetType="ListView">
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Background" Value="#EBEEFF"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Visible"/>
             </Style>
 
             <!-- itemListItemCont -->
@@ -75,24 +76,33 @@
                 <Setter Property="Visibility" Value="Hidden"/>
             </Style>
 
+            <!-- itemCellPanel -->
+            <Style x:Key="itemCellPanel" TargetType="StackPanel">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+
+            <!-- itemCellDataPanel -->
+            <Style x:Key="itemCellDataPanel" TargetType="StackPanel">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+
             <!-- itemListNameLbl -->
             <Style x:Key="itemListNameLbl" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="25"/>
                 <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="25"/>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
             <!-- itemListDescrLbl -->
             <Style x:Key="itemListDescrLbl" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
             </Style>
 
             <!-- itemListImg -->
             <Style x:Key="itemListImg" TargetType="Image">
-                <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="Width" Value="250"/>
                 <Setter Property="Height" Value="250"/>
             </Style>

@@ -15,7 +15,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.7*"/>
         </Grid.ColumnDefinitions>
 
         <DockPanel Style="{StaticResource startPagePanel}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
@@ -92,22 +92,13 @@
                                 <GridViewColumn>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>
-
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Style="{StaticResource itemListNameLbl}" Grid.Row="0" Grid.Column="0" Text="{Binding Name}"/>
-                                                <TextBlock Style="{StaticResource itemListDescrLbl}" Grid.Row="1" Grid.Column="0" Text="{Binding Description}"/>
-                                                <Image Style="{StaticResource itemListImg}" Grid.Row="2" Grid.Column="1"  Source="{Binding Image}"/>
-                                            </Grid>
+                                            <StackPanel Style="{StaticResource itemCellPanel}" Orientation="Horizontal">
+                                                <Image Style="{StaticResource itemListImg}" Source="{Binding Image}"/>
+                                                <StackPanel Style="{StaticResource itemCellDataPanel}">
+                                                    <TextBlock Style="{StaticResource itemListNameLbl}" Text="{Binding Name}"/>
+                                                    <TextBlock Style="{StaticResource itemListDescrLbl}" Text="{Binding Description}"/>
+                                                </StackPanel>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

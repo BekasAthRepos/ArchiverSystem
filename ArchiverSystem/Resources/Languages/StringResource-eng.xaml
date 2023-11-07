@@ -14,7 +14,7 @@
     <!-- Start Page -->
     <system:String x:Key="add">Add</system:String>
     <system:String x:Key="albumList">Album List</system:String>
-    <system:String x:Key="itemList">Item List</system:String>
+    <system:String x:Key="itemList">Item List</system:String>                              
     <system:String x:Key="noAlbumSelected">No album selected</system:String>
     
     <!-- Add Page -->
