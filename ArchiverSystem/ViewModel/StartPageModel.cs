@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace ArchiverSystem.ViewModel
 {
@@ -54,13 +55,18 @@ namespace ArchiverSystem.ViewModel
             FillAlbumList();
             Messenger.Default.Register<PropertyUpdateMessage>(this, message =>
             {
-                if (message.PropertyName == "AlbumList")
+                if (message.PropertyName == "NotifyAlbumList")
                 {
                     FillAlbumList();
                 }
-                if (message.PropertyName == "ItemList")
+                if (message.PropertyName == "NotifyItemList")
                 {
                     FillItemList((int)message.Value);
+                }
+                if (message.PropertyName == "DeleteAlbum")
+                {
+                    FillAlbumList();
+                    ItemList.Clear();
                 }
             });
         }

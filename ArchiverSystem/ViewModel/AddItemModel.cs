@@ -93,17 +93,16 @@ namespace ArchiverSystem.ViewModel
             }
             if (await _db.InsertItemAsync(_newItem))
             {
-
+                Messenger.Default.Send(new PropertyUpdateMessage
+                {
+                    PropertyName = "NotifyItemList",
+                    Value = albumId
+                });
                 MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
                 NewItem = new Item();
                 SetDefaultImage();
-                Messenger.Default.Send(new PropertyUpdateMessage
-                {
-                    PropertyName = "ItemList",
-                    Value = albumId
-                }); 
             }
         }
 

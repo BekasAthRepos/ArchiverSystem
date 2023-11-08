@@ -1,50 +1,56 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using ArchiverSystem.View;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.MobileControls;
 using System.Windows;
-using System.Windows.Input;
 
 namespace ArchiverSystem.ViewModel
 {
-    public class AddAlbumModel : INotifyPropertyChanged
+    public class EditAlbumModel : INotifyPropertyChanged
     {
         private DAL _db;
-        private Album _newAlbum;
-
-        public Album NewAlbum
+        private EditAlbumView _view;
+        private int _albumId;
+        private Album _album;
+        public Album Album
         {
-            get { return _newAlbum; }
+            get { return _album; }
             set
             {
-                if (_newAlbum != value)
+                if (_album != value)
                 {
-                    _newAlbum = value;
-                    OnPropertyChanged(nameof(NewAlbum));
+                    _album = value;
+                    OnPropertyChanged(nameof(Album));
                 }
             }
         }
-        public RelayCommand SaveAlbumCmd => new RelayCommand(execute => AddNewAlbum());
+        public RelayCommand SaveAlbumCmd => new RelayCommand(execute => SaveAlbum());
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-        public AddAlbumModel() 
+        public EditAlbumModel(int albumId, EditAlbumView view)
         {
-            _newAlbum = new Album();
-            _db = new DAL();
+            _albumId = albumId;
+            _view = view;
+            Initalization();
         }
 
-        private async void AddNewAlbum()
+        private async void Initalization()
         {
-            if (String.IsNullOrEmpty(_newAlbum.Name))
+            _db = new DAL();
+            Album = await _db.SelectAlbumByIdAsync(_albumId);
+        }
+
+        private async void SaveAlbum()
+        {
+            _album.Name = _album.Name.Trim();
+            _album.Description = _album.Description.Trim();
+            if (String.IsNullOrEmpty(_album.Name))
             {
                 MessageBox.Show(Application.Current.FindResource("nullField").ToString() + " " +
                     Application.Current.FindResource("name").ToString(),
@@ -53,19 +59,18 @@ namespace ArchiverSystem.ViewModel
                 return;
             }
 
-            _newAlbum.InputDate = DateTime.Now;
-            _newAlbum.UpdateDate = DateTime.Now;
-            if(await _db.InsertAlbumAsync(_newAlbum))
+            _album.UpdateDate = DateTime.Now;
+            if (await _db.UpdateAlbumAsync(_album))
             {
                 Messenger.Default.Send(new PropertyUpdateMessage
                 {
                     PropertyName = "NotifyAlbumList"
                 });
 
-                MessageBox.Show(Application.Current.FindResource("saveAlbum").ToString(), 
+                MessageBox.Show(Application.Current.FindResource("saveAlbum").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
-                NewAlbum = new Album();
+                _view.Close();
             }
         }
 

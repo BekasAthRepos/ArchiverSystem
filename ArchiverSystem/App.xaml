@@ -125,8 +125,8 @@
                 <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
-            <!-- addButton -->
-            <Style x:Key="addButton" TargetType="Button">
+            <!-- toolButton -->
+            <Style x:Key="toolButton" TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Background" Value="Transparent"/>

@@ -1,4 +1,5 @@
 ﻿using ArchiverSystem.Service;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace ArchiverSystem.ViewModel
 
         public DeleteAlbumModel()
         {
+            _db = new DAL();
         }
 
         public RelayCommand DeleteAlbumCmd => new RelayCommand(id => DeleteAlbum(id));
@@ -24,6 +26,11 @@ namespace ArchiverSystem.ViewModel
         {
             if(await _db.DeleteAlbumByIdAsync((int)albumId))
             {
+                Messenger.Default.Send(new PropertyUpdateMessage
+                {
+                    PropertyName = "DeleteAlbum"
+                });
+
                 MessageBox.Show(Application.Current.FindResource("albumDeleted").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );

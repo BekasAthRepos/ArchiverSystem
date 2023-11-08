@@ -39,13 +39,13 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Style="{StaticResource listLbl}" Content="{StaticResource albumList}"/>
-                    <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource addButton}" Click="onAddAlbumClicked">
+                    <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource toolButton}" Click="onAddAlbumClicked">
                         <Image Style="{StaticResource toolImg}" Source="../Resources/Images/plus.png"/>
                     </Button>
-                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource addButton}" Click="onAddAlbumClicked">
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource toolButton}" Click="onEditAlbumClicked">
                         <Image Style="{StaticResource toolImg}" Source="../Resources/Images/edit.png"/>
                     </Button>
-                    <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource addButton}" Click="onDeleteAlbumClicked">
+                    <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource toolButton}" Click="onDeleteAlbumClicked">
                         <Image Style="{StaticResource toolImg}" Source="../Resources/Images/delete.png"/>
                     </Button>
                     <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding AlbumList}"
@@ -88,12 +88,20 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Style="{StaticResource listLbl}" Content="{StaticResource itemList}"/>
-                    <Border Style="{StaticResource addButtonBorder}" Grid.Column="1" Grid.Row="0">
-                        <Button Style="{StaticResource addButton}" Content="{StaticResource add}" Click="onAddItemClicked"></Button>
-                    </Border>
-                    <ListView Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding ItemList}"
+                    <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource toolButton}" Click="onAddItemClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/plus.png"/>
+                    </Button>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource toolButton}" Click="onEditItemClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/edit.png"/>
+                    </Button>
+                    <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource toolButton}" Click="onDeleteItemClicked">
+                        <Image Style="{StaticResource toolImg}" Source="../Resources/Images/delete.png"/>
+                    </Button>
+                    <ListView Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding ItemList}"
                         MouseLeftButtonUp="onItemClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource itemListGridView}">

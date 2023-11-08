@@ -78,7 +78,7 @@ namespace ArchiverSystem.Service
             try
             {
                 string sql = "select * from Album where Id = @Id";
-                Album album = await _con.QueryFirstAsync<Album>(sql, new { Id = id});
+                Album album = await _con.QueryFirstAsync<Album>(sql, new { Id = id });
                 return album;
             }catch (Exception ex)
             {
@@ -88,13 +88,13 @@ namespace ArchiverSystem.Service
         }
 
         //Update Album 
-        public async Task<bool> UpdateAlbum(Album album)
+        public async Task<bool> UpdateAlbumAsync(Album album)
         {
             try
             {
                 string sql = "update Album set Name = @Name, Description = @Description, UpdateDate = @UpdateDate" +
                     " where Id=@id";
-                int affectedRows = await _con.ExecuteAsync(sql, new { album });
+                int affectedRows = await _con.ExecuteAsync(sql, album);
                 return affectedRows > 0;
             }catch(Exception ex)
             { 

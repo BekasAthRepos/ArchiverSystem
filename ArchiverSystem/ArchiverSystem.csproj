@@ -102,12 +102,16 @@
     <Compile Include="ViewModel\AddItemModel.cs" />
     <Compile Include="ViewModel\DeleteAlbumModel.cs" />
     <Compile Include="Service\RelayCommand.cs" />
+    <Compile Include="ViewModel\EditAlbumModel.cs" />
     <Compile Include="ViewModel\StartPageModel.cs" />
     <Compile Include="View\AddAlbumView.xaml.cs">
       <DependentUpon>AddAlbumView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddItemView.xaml.cs">
       <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditAlbumView.xaml.cs">
+      <DependentUpon>EditAlbumView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
@@ -125,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditAlbumView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

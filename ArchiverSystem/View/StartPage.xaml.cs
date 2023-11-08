@@ -49,19 +49,25 @@ namespace ArchiverSystem.View
 
         private void onEditAlbumClicked(object sender, EventArgs e)
         {
-            AddAlbumView addAlbumView = new AddAlbumView();
-            addAlbumView.ShowDialog();
+            if (_selectedAlbumId > 0)
+            {
+                EditAlbumView editAlbum = new EditAlbumView(_selectedAlbumId);
+                editAlbum.ShowDialog();
+            }
         }
 
-        private void onDeleteAlbumClicked(object sender, MouseButtonEventArgs e)
+        private void onDeleteAlbumClicked(object sender, EventArgs e)
         {
-            var lAlbum = (sender as ListView).SelectedItem;
-            if (lAlbum != null)
+            if (_selectedAlbumId > 0)
             {
-                Album album = lAlbum as Album;
-                _selectedAlbumId = album.Id;
-                DeleteAlbumModel deleteAlbum = new DeleteAlbumModel();
-                deleteAlbum.DeleteAlbumCmd.Execute(_selectedAlbumId);
+                var Result = MessageBox.Show(Application.Current.FindResource("deletedAlbum?").ToString(),
+                    Application.Current.FindResource("warning").ToString(),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (Result == MessageBoxResult.Yes)
+                {
+                    DeleteAlbumModel deleteAlbum = new DeleteAlbumModel();
+                    deleteAlbum.DeleteAlbumCmd.Execute(_selectedAlbumId);
+                }
             }
         }
 
@@ -73,6 +79,34 @@ namespace ArchiverSystem.View
                 addItemView.ShowDialog();
             }else
                 MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
+        }
+
+        private void onEditItemClicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("Edit item");
+            /*
+            if (_selectedAlbumId > 0)
+            {
+                AddItemView addItemView = new AddItemView(_selectedAlbumId);
+                addItemView.ShowDialog();
+            }
+            else
+                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
+            */
+        }
+
+        private void onDeleteItemClicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("Delete item");
+            /*
+            if (_selectedAlbumId > 0)
+            {
+                AddItemView addItemView = new AddItemView(_selectedAlbumId);
+                addItemView.ShowDialog();
+            }
+            else
+                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
+            */
         }
 
         private void onItemClicked(object sender, MouseButtonEventArgs e)
