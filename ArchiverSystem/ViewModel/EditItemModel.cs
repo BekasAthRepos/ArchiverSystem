@@ -1,5 +1,6 @@
 ﻿using ArchiverSystem.Model;
 using ArchiverSystem.Service;
+using ArchiverSystem.View;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using System;
@@ -10,28 +11,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ArchiverSystem.ViewModel
 {
-    public class AddItemModel: INotifyPropertyChanged
+    public class EditItemModel : INotifyPropertyChanged
     {
         private DAL _db;
-        private Item _newItem;
+        private Item _item;
         private BitmapImage _itemImage;
         private bool _defaultImage;
+        private EditItemView _view;
 
-        public Item NewItem
+        public Item Item
         {
-            get { return _newItem; }
+            get { return _item; }
             set
             {
-                if (_newItem != value)
+                if (_item != value)
                 {
-                    _newItem = value;
-                    OnPropertyChanged(nameof(NewItem));
+                    _item = value;
+                    OnPropertyChanged(nameof(Item));
                 }
             }
         }
@@ -49,28 +49,32 @@ namespace ArchiverSystem.ViewModel
             }
         }
 
-        public RelayCommand SaveItemCmd => new RelayCommand(execute => AddNewItem());
+        public RelayCommand SaveItemCmd => new RelayCommand(execute => EditItem());
         public RelayCommand LoadImgCmd => new RelayCommand(execute => LoadImage());
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AddItemModel(int albumId)
+        public EditItemModel(int itemId, EditItemView view)
         {
-            Initialization(albumId);
+            Initialization(itemId);
+            _view = view;   
         }
 
-        private void Initialization(int albumId)
+        private async void Initialization(int itemId)
         {
             _db = new DAL();
-            _newItem = new Item();
-            _newItem.AlbumId = albumId;
-            _newItem.Qty = 1;
-            SetDefaultImage();
+            Item = await _db.SelectItemByIdAsync(itemId);
+            if(Item.Image == null)
+            {
+                _defaultImage = true;
+                SetDefaultImage();
+            }
+                
         }
 
-        private async void AddNewItem()
+        private async void EditItem()
         {
-            int albumId = _newItem.AlbumId;
-            if (String.IsNullOrEmpty(_newItem.Name))
+            int albumId = _item.AlbumId;
+            if (String.IsNullOrEmpty(_item.Name))
             {
                 MessageBox.Show(Application.Current.FindResource("nullField").ToString() + " " +
                     Application.Current.FindResource("name").ToString(),
@@ -79,8 +83,7 @@ namespace ArchiverSystem.ViewModel
                 return;
             }
 
-            _newItem.InputDate = DateTime.Now;
-            _newItem.UpdateDate = DateTime.Now;
+            _item.UpdateDate = DateTime.Now;
             if (!_defaultImage)
             {
                 using (MemoryStream stream = new MemoryStream())
@@ -88,10 +91,10 @@ namespace ArchiverSystem.ViewModel
                     JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                     encoder.Frames.Add(BitmapFrame.Create(ItemImage));
                     encoder.Save(stream);
-                    _newItem.Image = stream.ToArray();
+                    _item.Image = stream.ToArray();
                 }
             }
-            if (await _db.InsertItemAsync(_newItem))
+            if (await _db.UpdateItemAsync(_item))
             {
                 Messenger.Default.Send(new PropertyUpdateMessage
                 {
@@ -101,8 +104,7 @@ namespace ArchiverSystem.ViewModel
                 MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
-                NewItem = new Item();
-                SetDefaultImage();
+                _view.Close();
             }
         }
 
@@ -110,7 +112,7 @@ namespace ArchiverSystem.ViewModel
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files|*.jpg;*.bmp;*png";
-            if(openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
                 ItemImage = new BitmapImage(new Uri(openFileDialog.FileName));
                 _defaultImage = false;

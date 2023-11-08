@@ -17,6 +17,7 @@
     <system:String x:Key="albumList">Album List</system:String>
     <system:String x:Key="itemList">Item List</system:String>                              
     <system:String x:Key="noAlbumSelected">No album selected</system:String>
+    <system:String x:Key="noItemSelected">No item selected</system:String>
     <system:String x:Key="deletedAlbum?">Delete this Album?</system:String>
     <system:String x:Key="albumDeleted">Album deleted successfully</system:String>
     <system:String x:Key="deletedItem?">Delete this Item?</system:String>

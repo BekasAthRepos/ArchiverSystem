@@ -189,13 +189,13 @@ namespace ArchiverSystem.Service
         }
 
         //Update Item 
-        public async Task<bool> UpdateItem(Item item)
+        public async Task<bool> UpdateItemAsync(Item item)
         {
             try
             {
                 string sql = "update Item set AlbumId = @AlbumId, Name = @Name, Description = @Description, Qty = @Qty, UpdateDate = @UpdateDate," +
                     " Image = @Image where Id=@id";
-                int affectedRows = await _con.ExecuteAsync(sql, new { item });
+                int affectedRows = await _con.ExecuteAsync(sql, item);
                 return affectedRows > 0;
             }
             catch (Exception ex)

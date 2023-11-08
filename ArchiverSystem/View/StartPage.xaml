@@ -48,7 +48,7 @@
                     <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource toolButton}" Click="onDeleteAlbumClicked">
                         <Image Style="{StaticResource toolImg}" Source="../Resources/Images/delete.png"/>
                     </Button>
-                    <ListView Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding AlbumList}"
+                    <ListView x:Name="AlbumList" Style="{StaticResource albumListView}" ItemContainerStyle="{StaticResource albumListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding AlbumList}"
                                MouseLeftButtonUp="onAlbumClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource albumListGridView}">
@@ -101,7 +101,7 @@
                     <Button Grid.Column="3" Grid.Row="0" Style="{StaticResource toolButton}" Click="onDeleteItemClicked">
                         <Image Style="{StaticResource toolImg}" Source="../Resources/Images/delete.png"/>
                     </Button>
-                    <ListView Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding ItemList}"
+                    <ListView x:Name="ItemList" Style="{StaticResource itemListView}" ItemContainerStyle="{StaticResource itemListItemCont}" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding ItemList}"
                         MouseLeftButtonUp="onItemClicked">
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource itemListGridView}">

@@ -19,7 +19,6 @@ namespace ArchiverSystem.View
     public partial class StartPage : Window
     {
         StartPageModel _startPageModel;
-        private int _selectedAlbumId;
         public StartPage()
         {
             InitializeComponent();
@@ -30,14 +29,15 @@ namespace ArchiverSystem.View
             this.Width = SystemParameters.PrimaryScreenWidth * 0.7;
         }
 
-        private void onAlbumClicked(object sender, MouseButtonEventArgs e)
+        private void onAlbumClicked(object sender, EventArgs e)
         {
-            var lAlbum = (sender as ListView).SelectedItem;
-            if(lAlbum != null)
+            if(AlbumList.SelectedIndex >= 0)
             {
-                Album album = lAlbum as Album;
-                _selectedAlbumId = album.Id;
-                _startPageModel.OnAlbumClick.Execute(album.Id);
+                Album album = (Album)AlbumList.SelectedItem;
+                if (album.Id > 0)
+                {
+                    _startPageModel.OnAlbumClickCmd.Execute(album.Id);
+                }
             }
         }
 
@@ -49,71 +49,101 @@ namespace ArchiverSystem.View
 
         private void onEditAlbumClicked(object sender, EventArgs e)
         {
-            if (_selectedAlbumId > 0)
+            if (AlbumList.SelectedIndex >= 0)
             {
-                EditAlbumView editAlbum = new EditAlbumView(_selectedAlbumId);
-                editAlbum.ShowDialog();
+                Album album = (Album)AlbumList.SelectedItem;
+                if (album.Id > 0)
+                {
+                    EditAlbumView editAlbum = new EditAlbumView(album.Id);
+                    editAlbum.ShowDialog();
+                }
             }
+            else
+                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
         }
 
         private void onDeleteAlbumClicked(object sender, EventArgs e)
         {
-            if (_selectedAlbumId > 0)
+            if (AlbumList.SelectedIndex >= 0)
             {
-                var Result = MessageBox.Show(Application.Current.FindResource("deletedAlbum?").ToString(),
+                Album album = (Album)AlbumList.SelectedItem;
+                if (album.Id > 0)
+                {
+                    var Result = MessageBox.Show(Application.Current.FindResource("deletedAlbum?").ToString(),
                     Application.Current.FindResource("warning").ToString(),
                     MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (Result == MessageBoxResult.Yes)
-                {
-                    DeleteAlbumModel deleteAlbum = new DeleteAlbumModel();
-                    deleteAlbum.DeleteAlbumCmd.Execute(_selectedAlbumId);
+                    if (Result == MessageBoxResult.Yes)
+                    {
+                        DeleteAlbumModel deleteAlbum = new DeleteAlbumModel();
+                        deleteAlbum.DeleteAlbumCmd.Execute(album.Id);
+                    }
                 }
             }
+            else
+                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
         }
 
         private void onAddItemClicked(object sender, EventArgs e)
         {
-            if(_selectedAlbumId > 0)
+            if (AlbumList.SelectedIndex >= 0)
             {
-                AddItemView addItemView = new AddItemView(_selectedAlbumId);
-                addItemView.ShowDialog();
-            }else
+                Album album = (Album)AlbumList.SelectedItem;
+                if (album.Id > 0)
+                {
+                    AddItemView addItemView = new AddItemView(album.Id);
+                    addItemView.ShowDialog();
+                }
+            }
+            else
                 MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
         }
 
         private void onEditItemClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Edit item");
-            /*
-            if (_selectedAlbumId > 0)
+            if (ItemList.SelectedIndex >= 0)
             {
-                AddItemView addItemView = new AddItemView(_selectedAlbumId);
-                addItemView.ShowDialog();
+                Item item = (Item)ItemList.SelectedItem;
+                if (item.Id > 0)
+                {
+                    EditItemView editAlbum = new EditItemView(item.Id);
+                    editAlbum.ShowDialog();
+                }
             }
             else
-                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
-            */
+                MessageBox.Show(Application.Current.FindResource("noItemSelected").ToString());
         }
 
         private void onDeleteItemClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete item");
-            /*
-            if (_selectedAlbumId > 0)
+            if(ItemList.SelectedIndex >= 0)
             {
-                AddItemView addItemView = new AddItemView(_selectedAlbumId);
-                addItemView.ShowDialog();
+                Item item = (Item) ItemList.SelectedItem;
+                if ( item.Id > 0)
+                {
+                    var Result = MessageBox.Show(Application.Current.FindResource("deletedItem?").ToString(),
+                    Application.Current.FindResource("warning").ToString(),
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (Result == MessageBoxResult.Yes)
+                    {
+                        DeleteItemModel deleteItem = new DeleteItemModel(item.Id, item.AlbumId);
+                        deleteItem.DeleteItemCmd.Execute(null);
+                    }
+                }
             }
             else
-                MessageBox.Show(Application.Current.FindResource("noAlbumSelected").ToString());
-            */
+                MessageBox.Show(Application.Current.FindResource("noItemSelected").ToString());
         }
 
-        private void onItemClicked(object sender, MouseButtonEventArgs e)
+        private void onItemClicked(object sender, EventArgs e)
         {
-            //var lAlbum = (sender as ListView).SelectedItem;
-            //Album album = lAlbum as Album;
-            //_startPageModel.OnAlbumClick.Execute(album.Id);
+            if (ItemList.SelectedIndex >= 0)
+            {
+                Item item = (Item)ItemList.SelectedItem;
+                if (item.Id > 0)
+                {
+                    _startPageModel.OnItemClickCmd.Execute(item.Id);
+                }
+            }
         }
     }
 }

@@ -42,8 +42,9 @@ namespace ArchiverSystem.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public RelayCommand OnAlbumClick => new RelayCommand(id => AlbumClick(id));
-        
+        public RelayCommand OnAlbumClickCmd => new RelayCommand(id => AlbumClick(id));
+        public RelayCommand OnItemClickCmd => new RelayCommand(id => ItemClick(id));
+
         public StartPageModel()
         {
             Initialization();
@@ -86,6 +87,11 @@ namespace ArchiverSystem.ViewModel
         private void AlbumClick(object id)
         {
             FillItemList((int)id);
+        }
+
+        private void ItemClick(object id)
+        {
+            
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
