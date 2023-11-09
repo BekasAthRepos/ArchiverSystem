@@ -4,6 +4,7 @@ using ArchiverSystem.View;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -62,13 +63,26 @@ namespace ArchiverSystem.ViewModel
         private async void Initialization(int itemId)
         {
             _db = new DAL();
+            ItemImage = new BitmapImage();
             Item = await _db.SelectItemByIdAsync(itemId);
-            if(Item.Image == null)
+            if (Item.Image == null)
             {
                 _defaultImage = true;
                 SetDefaultImage();
             }
-                
+            else
+            {
+                ItemImage = SetImage(_item.Image);
+                /*
+                using (MemoryStream stream = new MemoryStream(_item.Image))
+                {
+                    stream.Position = 0;
+                    ItemImage.BeginInit();
+                    ItemImage.CacheOption = BitmapCacheOption.OnLoad;
+                    ItemImage.StreamSource = stream;
+                    ItemImage.EndInit();
+                }*/
+            }
         }
 
         private async void EditItem()
@@ -123,6 +137,19 @@ namespace ArchiverSystem.ViewModel
         {
             ItemImage = new BitmapImage(new Uri(Application.Current.FindResource("newItemImg").ToString()));
             _defaultImage = true;
+        }
+
+        public BitmapImage SetImage(byte[] array)
+        {
+            using (var ms = new MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
