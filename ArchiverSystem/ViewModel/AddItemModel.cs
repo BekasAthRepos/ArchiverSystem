@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace ArchiverSystem.ViewModel
         private Item _newItem;
         private BitmapImage _itemImage;
         private bool _defaultImage;
+        private int _albumId;
 
         public Item NewItem
         {
@@ -60,11 +62,9 @@ namespace ArchiverSystem.ViewModel
 
         private void Initialization(int albumId)
         {
+            _albumId = albumId;
             _db = new DAL();
-            _newItem = new Item();
-            _newItem.AlbumId = albumId;
-            _newItem.Qty = 1;
-            SetDefaultImage();
+            SetDefaultItem();
         }
 
         private async void AddNewItem()
@@ -78,9 +78,6 @@ namespace ArchiverSystem.ViewModel
                     );
                 return;
             }
-
-            _newItem.InputDate = DateTime.Now;
-            _newItem.UpdateDate = DateTime.Now;
             if (!_defaultImage)
             {
                 using (MemoryStream stream = new MemoryStream())
@@ -101,8 +98,8 @@ namespace ArchiverSystem.ViewModel
                 MessageBox.Show(Application.Current.FindResource("saveItem").ToString(),
                     Application.Current.FindResource("success").ToString()
                     );
-                NewItem = new Item();
-                SetDefaultImage();
+                
+                SetDefaultItem();
             }
         }
 
@@ -117,8 +114,12 @@ namespace ArchiverSystem.ViewModel
             }
         }
 
-        private void SetDefaultImage()
+        private void SetDefaultItem()
         {
+            NewItem = new Item();
+            NewItem.AlbumId = _albumId;
+            NewItem.Qty = 1;
+            OnPropertyChanged(nameof(NewItem));
             ItemImage = new BitmapImage(new Uri(Application.Current.FindResource("newItemImg").ToString()));
             _defaultImage = true;
         }

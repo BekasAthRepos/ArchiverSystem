@@ -13,6 +13,8 @@ using System.Windows.Markup;
 using System.Data;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows;
+using System.Security.Policy;
 
 namespace ArchiverSystem.Service
 {
@@ -21,9 +23,13 @@ namespace ArchiverSystem.Service
         private string _conStr;//= ConfigurationManager.ConnectionStrings["ArchiverConnnectionString"].ConnectionString;
         private SqlConnection _con;
 
-        public DAL() 
+        public DAL(string dbPathAPI = "") 
         {
-            string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Archiver.mdf");
+            string dbPath;
+            if (String.IsNullOrEmpty(dbPathAPI))
+                dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Archiver.mdf");
+            else
+                dbPath = dbPathAPI;
             _conStr = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = " + dbPath + "; Integrated Security = True";
             _con = new SqlConnection(_conStr);
             _con.Open();
@@ -45,7 +51,9 @@ namespace ArchiverSystem.Service
         public async Task<bool> InsertAlbumAsync(Album album)
         {
             try
-            {
+            {              
+                album.InputDate = DateTime.Now;
+                album.UpdateDate = DateTime.Now;
                 string sql = "insert into Album values (@Name, @Description, @InputDate," +
                 " @UpdateDate)";
                 int rowsAffected = await _con.ExecuteAsync(sql, album);
@@ -92,6 +100,7 @@ namespace ArchiverSystem.Service
         {
             try
             {
+                album.UpdateDate = DateTime.Now;
                 string sql = "update Album set Name = @Name, Description = @Description, UpdateDate = @UpdateDate" +
                     " where Id=@id";
                 int affectedRows = await _con.ExecuteAsync(sql, album);
@@ -128,6 +137,8 @@ namespace ArchiverSystem.Service
         {
             try
             {
+                item.InputDate = DateTime.Now;
+                item.UpdateDate = DateTime.Now;
                 string sql = "insert into Item values (@AlbumId, @Name, @Description, @Qty, @InputDate," +
                 " @UpdateDate, @Image)";
                 int rowsAffected = await _con.ExecuteAsync(sql, item);
@@ -193,6 +204,7 @@ namespace ArchiverSystem.Service
         {
             try
             {
+                item.UpdateDate = DateTime.Now;
                 string sql = "update Item set AlbumId = @AlbumId, Name = @Name, Description = @Description, Qty = @Qty, UpdateDate = @UpdateDate," +
                     " Image = @Image where Id=@id";
                 int affectedRows = await _con.ExecuteAsync(sql, item);

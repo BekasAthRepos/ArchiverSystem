@@ -73,15 +73,6 @@ namespace ArchiverSystem.ViewModel
             else
             {
                 ItemImage = SetImage(_item.Image);
-                /*
-                using (MemoryStream stream = new MemoryStream(_item.Image))
-                {
-                    stream.Position = 0;
-                    ItemImage.BeginInit();
-                    ItemImage.CacheOption = BitmapCacheOption.OnLoad;
-                    ItemImage.StreamSource = stream;
-                    ItemImage.EndInit();
-                }*/
             }
         }
 
@@ -96,8 +87,6 @@ namespace ArchiverSystem.ViewModel
                     );
                 return;
             }
-
-            _item.UpdateDate = DateTime.Now;
             if (!_defaultImage)
             {
                 using (MemoryStream stream = new MemoryStream())
@@ -108,6 +97,8 @@ namespace ArchiverSystem.ViewModel
                     _item.Image = stream.ToArray();
                 }
             }
+            _item.Name = _item.Name.Trim();
+            _item.Description = _item.Description.Trim();
             if (await _db.UpdateItemAsync(_item))
             {
                 Messenger.Default.Send(new PropertyUpdateMessage

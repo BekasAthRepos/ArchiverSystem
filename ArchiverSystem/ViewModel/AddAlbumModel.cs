@@ -52,10 +52,7 @@ namespace ArchiverSystem.ViewModel
                     );
                 return;
             }
-
-            _newAlbum.InputDate = DateTime.Now;
-            _newAlbum.UpdateDate = DateTime.Now;
-            if(await _db.InsertAlbumAsync(_newAlbum))
+            if (await _db.InsertAlbumAsync(_newAlbum))
             {
                 Messenger.Default.Send(new PropertyUpdateMessage
                 {
