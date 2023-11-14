@@ -22,27 +22,32 @@ namespace ArchiverAPI.Controllers
         }
 
         //GET all albums
-        //https://localhost:7155/Album
-        [HttpGet]
+        //https://localhost:7155/Album/getAll
+        [HttpGet("getAll")]
         public async Task<ActionResult<IEnumerable<Album>>> GetAllAlbums()
         {
             List<Album> albums = await db.SelectAlbumsAsync();
-            return albums;
+            if(albums.Count > 0)
+                return albums;
+            return NotFound();
         }
 
         //GET an album
-        //https://localhost:7155/Album/id?id=15
-        [HttpGet("{id:int}", Name = "GetAlbum")]
-        public async Task<ActionResult<Album>> GetAlbumById(int id)
+        //https://localhost:7155/Album/get/1
+        [HttpGet("get/{id:int}")]
+        public async Task<ActionResult<Album>> GetAlbumById([FromRoute]int id)
         {
             if (!(id > 0))
-                return NotFound();
+                return BadRequest();
             Album album = await db.SelectAlbumByIdAsync(id);
-            return album;
+            if (album != null)
+                return album;
+            return NotFound();
         }
 
         //POST an album
-        [HttpPost]
+        //https://localhost:7155/Album/newAlbum
+        [HttpPost("newAlbum")]
         public async Task<ActionResult> CreateAlbum([FromBody] Album newAlbum)
         {
             if (newAlbum == null)
@@ -54,21 +59,22 @@ namespace ArchiverAPI.Controllers
         }
 
         //DELETE an album
-        //https://localhost:7155/Album/21
-        [HttpDelete("{id:int}", Name = "DeleteAlbum")]
-        public async Task<ActionResult> DeleteAlbum(int id)
+        //https://localhost:7155/Album/delete?id=1
+        [HttpDelete("delete")]
+        public async Task<ActionResult> DeleteAlbum([FromQuery]int id)
         {
             if (!(id > 0))
-                return NotFound();
+                return BadRequest();
 
             if (await db.DeleteAlbumByIdAsync(id))
                 return Ok();
-            return BadRequest();
+            return NotFound();
         }
 
         //PUT (update) an album
-        [HttpPut]
-        public async Task<ActionResult> UpdateAlbum([FromBodyAttribute] Album album)
+        //https://localhost:7155/Album/update
+        [HttpPut("update")]
+        public async Task<ActionResult> UpdateAlbum([FromBody] Album album)
         {
             if(!(album.Id > 0))
                 return NotFound();

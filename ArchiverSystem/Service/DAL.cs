@@ -130,6 +130,23 @@ namespace ArchiverSystem.Service
             return false;
         }
 
+        //Album exists
+        public async Task<bool> AlbumExists(int id)
+        {
+            try
+            {
+                string sql = "select count(*) from Album where Id = @id";
+                int rows = await _con.ExecuteScalarAsync<int>(sql, new { Id = id });
+                if (rows == 1)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
         // -- Item functions --
 
         //Insert Item
@@ -226,6 +243,23 @@ namespace ArchiverSystem.Service
                 int affectedRows = await _con.ExecuteAsync(sql, new { Id = id });
              
                 return affectedRows > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        //Item exists
+        public async Task<bool> ItemExists(int id)
+        {
+            try
+            {
+                string sql = "select count(*) from Item where Id = @id";
+                int rows = await _con.ExecuteScalarAsync<int>(sql, new { Id = id });
+                if (rows == 1)
+                    return true;
             }
             catch (Exception ex)
             {
