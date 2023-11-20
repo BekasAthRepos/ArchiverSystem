@@ -2,6 +2,7 @@
 using ArchiverSystem.Service;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ArchiverAPI.Controllers
 {
     [Route("[controller]")]
@@ -26,11 +27,8 @@ namespace ArchiverAPI.Controllers
         public async Task<ActionResult<IEnumerable<Item>>> GetAllItems()
         {
             List<Item> items = await db.SelectItemsAsync();
-
-            //Temp: delete images
-            foreach (Item item in items) 
-                item.Image = null;
-            //----
+            foreach (Item item in items)
+                item.ImageB64 = Convert.ToBase64String(item.Image);
 
             if (items.Count > 0)
                 return items;
@@ -43,11 +41,8 @@ namespace ArchiverAPI.Controllers
         public async Task<ActionResult<IEnumerable<Item>>> GetAllAlbumItems([FromRoute]int albumId)
         {
             List<Item> items = await db.SelectAlbumItemsAsync(albumId);
-
-            //Temp: delete images
             foreach (Item item in items)
-                item.Image = null;
-            //----
+                item.ImageB64 = Convert.ToBase64String(item.Image);
 
             if (items.Count > 0)
                 return items;
@@ -62,13 +57,11 @@ namespace ArchiverAPI.Controllers
             if (!(id > 0))
                 return BadRequest();
             Item item = await db.SelectItemByIdAsync(id);
-
-            //Temp: delete images
-            item.Image = null;
-            //----
-
             if (item != null)
+            {
+                item.ImageB64 = Convert.ToBase64String(item.Image);
                 return item;
+            }
             return NotFound();
         }
 

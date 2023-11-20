@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,7 +19,9 @@ namespace ArchiverSystem.Model
         public double Qty { get; set; }
         public DateTime InputDate { get; set; }
         public DateTime UpdateDate { get; set;}
+        [JsonIgnore]
         public byte[] Image {get; set;}
+        public string ImageB64 { get; set;}
 
         public Item() 
         {
