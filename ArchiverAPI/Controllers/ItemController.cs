@@ -75,6 +75,7 @@ namespace ArchiverAPI.Controllers
             if(!(await db.AlbumExists(newItem.AlbumId)))
                 return NotFound("Album not found");
 
+            newItem.Image = Convert.FromBase64String(newItem.ImageB64);
             if (await db.InsertItemAsync(newItem))
                 return Ok();
             return BadRequest();
