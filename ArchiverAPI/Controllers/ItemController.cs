@@ -28,7 +28,10 @@ namespace ArchiverAPI.Controllers
         {
             List<Item> items = await db.SelectItemsAsync();
             foreach (Item item in items)
-                item.ImageB64 = Convert.ToBase64String(item.Image);
+            {
+                if(item.Image != null)
+                    item.ImageB64 = Convert.ToBase64String(item.Image);
+            }
 
             if (items.Count > 0)
                 return items;
@@ -101,6 +104,7 @@ namespace ArchiverAPI.Controllers
         {
             if (!(item.Id > 0))
                 return NotFound();
+            item.Image = Convert.FromBase64String(item.ImageB64);
             if (await db.UpdateItemAsync(item))
                 return Ok();
             return BadRequest();
