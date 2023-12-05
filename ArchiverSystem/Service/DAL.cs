@@ -150,7 +150,7 @@ namespace ArchiverSystem.Service
         // -- Item functions --
 
         //Insert Item
-        public async Task<bool> InsertItemAsync(Item item)
+        public async Task<int> InsertItemAsync(Item item)
         {
             try
             {
@@ -158,14 +158,17 @@ namespace ArchiverSystem.Service
                 item.UpdateDate = DateTime.Now;
                 string sql = "insert into Item values (@AlbumId, @Name, @Description, @Qty, @InputDate," +
                 " @UpdateDate, @Image)";
-                int rowsAffected = await _con.ExecuteAsync(sql, item);
-                return rowsAffected > 0;
+                int rows = await _con.ExecuteAsync(sql, item);
+                int newId = -1;
+                if (rows > 0)
+                    newId = await _con.ExecuteScalarAsync<int>("select max(ID) from Item");
+                return newId;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return false;
+            return -1;
         }
 
         //Get All Items

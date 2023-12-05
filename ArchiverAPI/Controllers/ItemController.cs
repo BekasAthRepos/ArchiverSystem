@@ -41,11 +41,14 @@ namespace ArchiverAPI.Controllers
         //GET all items of album
         //https://localhost:7155/Item/getAll/1
         [HttpGet("getAll/{albumId:int}")]
-        public async Task<ActionResult<IEnumerable<Item>>> GetAllAlbumItems([FromRoute]int albumId)
+        public async Task<ActionResult<IEnumerable<Item>>> GetAllAlbumItems([FromRoute] int albumId)
         {
             List<Item> items = await db.SelectAlbumItemsAsync(albumId);
-            foreach (Item item in items)
-                item.ImageB64 = Convert.ToBase64String(item.Image);
+            foreach (Item item in items) 
+            { 
+                if(item.Image != null)
+                    item.ImageB64 = Convert.ToBase64String(item.Image);
+            }
 
             if (items.Count > 0)
                 return items;
@@ -77,10 +80,12 @@ namespace ArchiverAPI.Controllers
                 return BadRequest();
             if(!(await db.AlbumExists(newItem.AlbumId)))
                 return NotFound("Album not found");
-
-            newItem.Image = Convert.FromBase64String(newItem.ImageB64);
-            if (await db.InsertItemAsync(newItem))
-                return Ok();
+            
+            if(newItem.Image != null)
+                newItem.Image = Convert.FromBase64String(newItem.ImageB64);
+            int newId = await db.InsertItemAsync(newItem);
+            if (newId > 0)
+                return Ok(newId);
             return BadRequest();
         }
 

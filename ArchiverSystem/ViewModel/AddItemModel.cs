@@ -88,7 +88,7 @@ namespace ArchiverSystem.ViewModel
                     _newItem.Image = stream.ToArray();
                 }
             }
-            if (await _db.InsertItemAsync(_newItem))
+            if (await _db.InsertItemAsync(_newItem) > 0)
             {
                 Messenger.Default.Send(new PropertyUpdateMessage
                 {
