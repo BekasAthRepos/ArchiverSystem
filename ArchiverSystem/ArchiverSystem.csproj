@@ -55,6 +55,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.7\lib\net48\CommonServiceLocator.dll</HintPath>
@@ -232,6 +235,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Documents\Schema.sql" />
+    <Resource Include="Resources\Images\add %281%29.png" />
+    <Resource Include="Resources\Images\delete %281%29.png" />
+    <Resource Include="Resources\Images\edit %281%29.png" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="Resources\Images\logo.ico" />
+    <Resource Include="logo.ico" />
     <Resource Include="Resources\Images\add-image.png" />
     <Resource Include="Resources\Images\delete.png" />
     <Resource Include="Resources\Images\edit.png" />

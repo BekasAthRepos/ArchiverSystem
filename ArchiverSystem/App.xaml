@@ -13,18 +13,46 @@
 
             <!-- dockPanelBorder -->
             <Style x:Key="dockPanelBorder" TargetType="Border">
-                <Setter Property="CornerRadius" Value="6"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="Margin" Value="3"/>
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Margin" Value="0"/>
                 <Setter Property="Background" Value="white"/>
+            </Style>
+
+            <!-- startPageTitleImg -->
+            <Style x:Key="startPageTitleImg" TargetType="Image">
+                <Setter Property="Width" Value="45"/>
+                <Setter Property="HorizontalAlignment" Value="left"/>
             </Style>
 
             <!-- startPageTitleLabel -->
             <Style x:Key="startPageTitleLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="25"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Foreground" Value="Blue"/>
+            </Style>
+
+            <!-- CPanel -->
+            <Style x:Key="CPanel" TargetType="DockPanel">
+
+            </Style>
+            
+            <!-- CPanelBorder -->
+            <Style x:Key="CPanelBorder" TargetType="Border">
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            
+            <!-- startPageCLabel -->
+            <Style x:Key="startPageCLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="Black"/>
             </Style>
 
             <!-- albumListView -->
@@ -36,18 +64,19 @@
 
             <!-- albumListItemCont -->
             <Style x:Key="albumListItemCont" TargetType="ListViewItem">
-                <Setter Property="Margin" Value="0,0,0,9"/>
+                <Setter Property="Margin" Value="0,0,0,1"/>
                 <Setter Property="Background" Value="White"/>
             </Style>
 
             <!-- albumListGridView -->
             <Style x:Key="albumListGridView" TargetType="GridViewColumnHeader">
+                <Setter Property="Height" Value="2"/>
                 <Setter Property="Visibility" Value="Hidden"/>
             </Style>
 
             <!-- albumListNameLbl -->
             <Style x:Key="albumListNameLbl" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Foreground" Value="Black"/>
             </Style>
@@ -73,7 +102,8 @@
 
             <!-- itemListGridView -->
             <Style x:Key="itemListGridView" TargetType="GridViewColumnHeader">
-                <Setter Property="Visibility" Value="Hidden"/>
+                <Setter Property="Visibility" Value="Visible"/>
+                <Setter Property="Height" Value="10"/>
             </Style>
 
             <!-- itemCellPanel -->
@@ -119,9 +149,8 @@
 
             <!-- listLbl -->
             <Style x:Key="listLbl" TargetType="Label">
-                <Setter Property="FontSize" Value="25"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="#474747"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
             </Style>
 
@@ -154,10 +183,10 @@
 
             <!-- addEditPageTitleLabel -->
             <Style x:Key="addEditPageTitleLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="Foreground" Value="#474747"/>
             </Style>
 
             <!-- dataTextBox -->

@@ -11,17 +11,22 @@
     <system:String x:Key="warning">Warning!</system:String>
     <system:String x:Key="success">Success!</system:String>
     <system:String x:Key="Error">Error!</system:String>
+    <system:String x:Key="New">New</system:String>
+    <system:String x:Key="Edit">Edit</system:String>
+    <system:String x:Key="Delete">Delete</system:String>
+
     
     <!-- Start Page -->
     <system:String x:Key="add">Add</system:String>
-    <system:String x:Key="albumList">Album List</system:String>
-    <system:String x:Key="itemList">Item List</system:String>                              
+    <system:String x:Key="albumList">Albums</system:String>
+    <system:String x:Key="itemList">Items</system:String>                              
     <system:String x:Key="noAlbumSelected">No album selected</system:String>
     <system:String x:Key="noItemSelected">No item selected</system:String>
     <system:String x:Key="deletedAlbum?">Delete this Album?</system:String>
     <system:String x:Key="albumDeleted">Album deleted successfully</system:String>
     <system:String x:Key="deletedItem?">Delete this Item?</system:String>
     <system:String x:Key="itemDeleted">Item deleted successfully</system:String>
+    <system:String x:Key="copyright">© Bekas Athanasios - All rights reserved</system:String>
 
     <!-- Add/edit Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>

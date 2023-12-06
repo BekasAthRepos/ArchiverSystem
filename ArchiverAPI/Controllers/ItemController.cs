@@ -50,8 +50,10 @@ namespace ArchiverAPI.Controllers
                     item.ImageB64 = Convert.ToBase64String(item.Image);
             }
 
-            if (items.Count > 0)
+            if(await db.AlbumExists(albumId))
+            {
                 return items;
+            }
             return NotFound();
         }
 
@@ -81,7 +83,7 @@ namespace ArchiverAPI.Controllers
             if(!(await db.AlbumExists(newItem.AlbumId)))
                 return NotFound("Album not found");
             
-            if(newItem.Image != null)
+            if(newItem.ImageB64 != null)
                 newItem.Image = Convert.FromBase64String(newItem.ImageB64);
             int newId = await db.InsertItemAsync(newItem);
             if (newId > 0)
@@ -109,7 +111,8 @@ namespace ArchiverAPI.Controllers
         {
             if (!(item.Id > 0))
                 return NotFound();
-            item.Image = Convert.FromBase64String(item.ImageB64);
+            if(item.ImageB64 != null)
+                item.Image = Convert.FromBase64String(item.ImageB64);
             if (await db.UpdateItemAsync(item))
                 return Ok();
             return BadRequest();
