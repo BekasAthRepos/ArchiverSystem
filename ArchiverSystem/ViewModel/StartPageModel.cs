@@ -20,7 +20,6 @@ namespace ArchiverSystem.ViewModel
         private ObservableCollection<Item> _itemList;
         private DAL _db;
 
-
         public ObservableCollection<Album> AlbumList
         {
             get { return _albumList; }

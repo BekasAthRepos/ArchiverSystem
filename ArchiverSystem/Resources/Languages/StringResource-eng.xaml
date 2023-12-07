@@ -4,6 +4,7 @@
 
     <!-- General -->
     <system:String x:Key="mainTitle">Archiver</system:String>
+    <system:String x:Key="mainDescr">The ultimate archive system</system:String>
     <system:String x:Key="btnSave">Save</system:String>
     <system:String x:Key="name">Name</system:String>
     <system:String x:Key="description">Description</system:String>
@@ -27,6 +28,8 @@
     <system:String x:Key="deletedItem?">Delete this Item?</system:String>
     <system:String x:Key="itemDeleted">Item deleted successfully</system:String>
     <system:String x:Key="copyright">© Bekas Athanasios - All rights reserved</system:String>
+    <system:String x:Key="albumSum">Total Albums: </system:String>
+    <system:String x:Key="itemSum">Total Items: </system:String>
 
     <!-- Add/edit Page -->
     <system:String x:Key="newAlbum">Add new Album</system:String>

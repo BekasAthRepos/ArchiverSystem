@@ -22,8 +22,22 @@
 
         <Border Style="{StaticResource dockPanelBorder}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
             <DockPanel Style="{StaticResource startPagePanel}" >
-                <Image Style="{StaticResource startPageTitleImg}" Source="../Resources/Images/logo.png"></Image>
-                <Label Style="{StaticResource startPageTitleLabel}" Content="{StaticResource mainTitle}"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.03*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.03*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="1" Style="{StaticResource startPageTitleImg}" Source="../Resources/Images/logo.png"></Image>
+                    <Label Grid.Column="2" Style="{StaticResource startPageTitleLabel}" Content="{StaticResource mainTitle}"></Label>
+                    <Label Grid.Column="3" Style="{StaticResource startPageDescrLabel}" Content="{StaticResource mainDescr}"></Label>
+                </Grid>
             </DockPanel>
         </Border>
 
@@ -144,14 +158,14 @@
 
         <Border Style="{StaticResource dockPanelBorder}" Grid.Column="0" Grid.Row="2">
             <DockPanel Style="{StaticResource startPagePanel}" >
-                <Image Style="{StaticResource startPageTitleImg}" Source="../Resources/Images/logo.png"></Image>
-                <Label Style="{StaticResource startPageTitleLabel}" Content="{StaticResource mainTitle}"></Label>
+                <Label Style="{StaticResource startPageFooterLabel}" Content="{StaticResource albumSum}"></Label>
+                <Label Style="{StaticResource footerSumLabel}" Content="{Binding AlbumList.Count}"/>
             </DockPanel>
         </Border>
         <Border Style="{StaticResource dockPanelBorder}" Grid.Column="1" Grid.Row="2">
             <DockPanel Style="{StaticResource startPagePanel}" >
-                <Image Style="{StaticResource startPageTitleImg}" Source="../Resources/Images/logo.png"></Image>
-                <Label Style="{StaticResource startPageTitleLabel}" Content="{StaticResource mainTitle}"></Label>
+                <Label Style="{StaticResource startPageFooterLabel}" Content="{StaticResource itemSum}"></Label>
+                <Label Style="{StaticResource footerSumLabel}" Content="{Binding ItemList.Count}"/>
             </DockPanel>
         </Border>
         <Border Style="{StaticResource CPanelBorder}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
